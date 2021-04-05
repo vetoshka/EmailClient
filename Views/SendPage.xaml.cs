@@ -12,6 +12,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EmailClient.Domain.Models;
 using EmailClient.Exceptions;
+using EmailClient.Log;
+using EmailClient.Models;
+using MimeKit;
 
 namespace EmailClient.Views
 {
@@ -20,16 +23,15 @@ namespace EmailClient.Views
     /// </summary>
     public partial class SendPage : Page
     {
-        private readonly EmailService _emailService;
+        private readonly IMailService _emailService;
         private readonly EmailMessageBuilder _builder;
-        private readonly MailBoxProperties mailBox;
         public SendPage()
         {
             InitializeComponent();
-            _emailService = new EmailService();
             _builder = new EmailMessageBuilder();
-            mailBox = LoginPage.mailbox;
-            _builder.From(mailBox.UserName);
+            _emailService = LoginPage.EmailService;
+         
+            _builder.From(_emailService.MailBoxProperties.UserName);
         }
 
         private void ToChangedEventHandler(object sender, RoutedEventArgs args)
@@ -61,7 +63,7 @@ namespace EmailClient.Views
             if(!_builder.CanSend()) error.Text = "message can`t be send";
            else
            {
-               _emailService.SendMessages(_builder.Build(), mailBox);
+               _emailService.SendMessages(CreateMessage(_builder.Build()));
                MainWindow.MainFrame.Content = new HomePage();
             }
          
@@ -69,8 +71,32 @@ namespace EmailClient.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(_builder.CanBuild()) _emailService.AddDraft(mailBox, _builder.Build());
+            if (_emailService.MailBoxProperties.IncomingServer.Contains("imap"))
+            {
+                var mail = _emailService as MailWithImap;
+                if (_builder.CanBuild()) mail.AddDraft(CreateMessage(_builder.Build()));
+            }
             MainWindow.MainFrame.Content = new HomePage();
+        }
+
+        private MimeMessage CreateMessage(EmailMessageModel messageModel)
+        {
+            var message = new MimeMessage();
+            message.From.Add(messageModel.From);
+            message.To.AddRange(messageModel.To);
+            message.Subject = messageModel.Subject;
+            var builder = new BodyBuilder
+            {
+                TextBody = messageModel.TextBody
+            };
+            foreach (var attachment in messageModel.Attachments)
+            {
+                builder.Attachments.Add(attachment);
+            }
+
+            message.Body = builder.ToMessageBody();
+            return message;
+
         }
     }
 }

@@ -8,7 +8,7 @@ namespace EmailClient
 {
    public class Logger : ILogger
     {
-        private const string filePath = @"C:\Users\anyak\source\repos\EmailClient\logfile.txt";
+        private const string filePath = @"D:\EmailClient\Log\logfile.txt";
         private static readonly Logger _logger = new Logger();
         private Logger()
         {
@@ -39,11 +39,11 @@ namespace EmailClient
             WriteToFile($"Debug : {message} ");
         }
 
-        private void WriteToFile( string massage)
+        private void WriteToFile( string message)
         {
 
             using StreamWriter sw = File.AppendText(filePath);
-            sw.WriteLine( $"{DateTime.Now}   massage ");
+            sw.WriteLine( $"{DateTime.Now} , {message}");
         }
     }
 }

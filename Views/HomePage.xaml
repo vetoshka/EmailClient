@@ -8,11 +8,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage">
-    <Page.DataContext>
-        <models:EmailMessageModel/>
-    </Page.DataContext>
     <Grid>
-        <ListView Name="messageList">
+        <ListView Name="messageList" Margin="219,0,0,0">
+            <ListView.DataContext>
+                <models:EmailMessageModel/>
+            </ListView.DataContext>
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Subject}">Subject</GridViewColumn>
@@ -20,8 +20,26 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Frame Grid.Column="1" Name="contentFrame" NavigationUIVisibility="Hidden" />
-        <Button Content="LogOut" HorizontalAlignment="Left" Margin="629,395,0,0" VerticalAlignment="Top" Height="26" Width="129" Click="Button_Click"/>
-        <Button Content="New message" HorizontalAlignment="Left" Margin="58,375,0,0" VerticalAlignment="Top" Height="33" Width="225" Click="New_Message_Button_Click"/>
+        <Frame Name="contentFrame" NavigationUIVisibility="Hidden" Margin="10,0,-10,0" />
+        <Button Content="LogIn" HorizontalAlignment="Left" Margin="625,375,0,0" VerticalAlignment="Top" Height="33" Width="129" Click="Button_Click"/>
+        <Button Content="New message" HorizontalAlignment="Left" Margin="253,375,0,0" VerticalAlignment="Top" Height="33" Width="225" Click="New_Message_Button_Click" >
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger 
+                            Binding ="{Binding ElementName=AccountView, Path=SelectedIndex}" 
+                            Value="-1">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+</Button>
+        <ListBox Name="AccountView" Margin="0,0,581,0" SelectionMode="Single" SelectionChanged="AccountView_OnSelectionChanged">
+            <ListBox.DataContext>
+                <models:EmailAccount/>
+            </ListBox.DataContext>
+            <TextBlock Text="{Binding MailBoxProperties.UserName}" ></TextBlock>
+        </ListBox>
     </Grid>
 </Page>

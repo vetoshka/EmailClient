@@ -7,7 +7,9 @@ namespace EmailClient.Models
 {
    public class EmailAccount
     {
-        private MailBoxProperties MailBoxProperties { get; set; }
+        public MailBoxProperties MailBoxProperties { get; set; }
+        public IEnumerable<EmailMessageModel> Emails { get; set; }
+
 
     }
 }

@@ -1,0 +1,24 @@
+
+01.04.2021 15:43:24 , Information : Start
+01.04.2021 15:43:34 , Information : Start getting messages from trpztest197@gmail.com
+01.04.2021 15:43:38 , Information : All messages have been loaded from trpztest197@gmail.com
+02.04.2021 00:53:13 , Information : Start
+02.04.2021 00:53:56 , Information : Login to trpztest197@gmail.com
+02.04.2021 00:56:30 , Information : Start
+02.04.2021 00:56:50 , Information : Login to trpztest197@gmail.com
+02.04.2021 00:56:55 , Information : Start getting messages from trpztest197@gmail.com
+02.04.2021 00:57:00 , Information : All messages have been loaded from trpztest197@gmail.com
+02.04.2021 01:03:57 , Information : Start
+02.04.2021 01:04:16 , Information : Login to anyakolomiecx@ukr.net
+02.04.2021 01:04:17 , Error : Error while logging to anyakolomiecx@ukr.net /n 535: Incorrect authentication data
+02.04.2021 01:08:52 , Information : Login to anyakolomiecx@ukr.net
+02.04.2021 01:08:53 , Error : Error while logging to anyakolomiecx@ukr.net /n 535: Incorrect authentication data
+02.04.2021 01:14:38 , Error : Error while logging to trpztest197@gmail.com /n Попытка установить соединение была безуспешной, т.к. от другого компьютера за требуемое время не получен нужный отклик, или было разорвано уже установленное соединение из-за неверного отклика уже подключенного компьютера. 142.250.150.109:2525
+02.04.2021 01:14:49 , Information : Login to trpztest197@gmail.com
+02.04.2021 01:15:11 , Information : Start
+02.04.2021 01:15:17 , Information : Login to trpztest197@gmail.com
+02.04.2021 01:15:19 , Error : Error while logging to trpztest197@gmail.com /n 535: 5.7.8 Username and Password not accepted. Learn more at
+5.7.8  https://support.google.com/mail/?p=BadCredentials x23sm662770lfg.309 - gsmtp
+02.04.2021 01:15:26 , Information : Login to trpztest197@gmail.com
+02.04.2021 01:15:35 , Information : Start getting messages from trpztest197@gmail.com
+02.04.2021 01:15:40 , Information : All messages have been loaded from trpztest197@gmail.com

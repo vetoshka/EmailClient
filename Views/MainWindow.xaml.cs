@@ -10,7 +10,6 @@ namespace EmailClient
     public partial class MainWindow : Window
     {
         public static Frame MainFrame { get; set; }
-        public static bool LoggedIn { get; set; }
         public MainWindow()
         {
             InitializeComponent();
