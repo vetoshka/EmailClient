@@ -1,43 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using EmailClient.Domain.Models;
-using EmailClient.Models;
 using MailKit;
 using MailKit.Net.Imap;
-using MailKit.Net.Smtp;
 using MailKit.Search;
 using MimeKit;
 
-namespace EmailClient
+namespace EmailClient.MailServer
 {
-    public class MailWithImap : IMailService
+    public class MailWithImap : MailService
     {
-        private readonly ImapClient _imapClient;
+        private  ImapClient _imapClient;
 
-        public MailWithImap()
+        public override bool Login(MailBoxProperties mailBoxProperties)
         {
-            _imapClient = new ImapClient();
+            _imapClient.AuthenticationMechanisms.Remove("XOAUTH2");
+            _imapClient.Authenticate(mailBoxProperties.UserName, mailBoxProperties.Password);
+            return _imapClient.IsAuthenticated;
         }
-        public  void Connect()
+
+        public override void Connect( MailBoxProperties mailBoxProperties)
             {
-                if (MailBoxProperties == null)
-                {
-                    throw new ArgumentNullException(nameof(MailBoxProperties));
-                }
-                _imapClient.Connect(MailBoxProperties.IncomingServer, MailBoxProperties.IncomingServerPort, true);
+                _imapClient = new ImapClient();
+                _imapClient.Connect(mailBoxProperties.IncomingServer, mailBoxProperties.IncomingServerPort, true);
                 _imapClient.AuthenticationMechanisms.Remove("XOAUTH2");
             }
 
-        public MailBoxProperties MailBoxProperties { get; set; }
+        public override MailBoxProperties SetMailBoxProperties(string username, string password, string provider)
+        {
+            return new MailBoxProperties()
+            {
+                IncomingServer = $"imap.{provider}",
+                IncomingServerPort = 993,
+                Smtp = $"smtp.{provider}",
+                SmtpPort = 465,
+                UserName = username,
+                Password = password
+            };
+        }
 
-        public  IEnumerable<MimeMessage> GetMessages()
+        public override IEnumerable<MimeMessage> FetchAllMessages()
         {
             List<MimeMessage> mimeMessages = new List<MimeMessage>();
             using (_imapClient)
             {
-                Connect();
-                _imapClient.Authenticate(MailBoxProperties.UserName, MailBoxProperties.Password);
                 _imapClient.Inbox.Open(FolderAccess.ReadOnly);
                 var ids = _imapClient.Inbox.Search(SearchQuery.All);
 
@@ -46,65 +51,10 @@ namespace EmailClient
                     var message = _imapClient.Inbox.GetMessage(uid);
                     mimeMessages.Add(message);
                 }
+                _imapClient.Disconnect(true);
                 return mimeMessages;
+               
             }
-
-          
-        }
-
-        public  bool Login()
-        {
-
-            bool login = false;
-            using ( var _smtpClient = new SmtpClient())
-            {
-                    _smtpClient.Connect(MailBoxProperties.Smtp, MailBoxProperties.SmtpPort, true);
-                    _smtpClient.AuthenticationMechanisms.Remove("XOAUTH2");
-                    _smtpClient.Authenticate(MailBoxProperties.UserName, MailBoxProperties.Password);
-                    login = _smtpClient.IsAuthenticated;
-            }
-            return login;
-        }
-
-        public  void SendMessages(MimeMessage message)
-        {
-            using (var _smtpClient = new SmtpClient())
-            {
-                _smtpClient.Connect(MailBoxProperties.Smtp, MailBoxProperties.SmtpPort, true);
-                _smtpClient.AuthenticationMechanisms.Remove("XOAUTH2");
-                _smtpClient.Authenticate(MailBoxProperties.UserName, MailBoxProperties.Password);
-                if (!_smtpClient.IsAuthenticated)
-                {
-
-                    throw new Exception("Client is not Authenticated");
-                }
-
-                _smtpClient.Send(message);
-
-            }
-        }
-
-        public void AddDraft(MimeMessage message)
-        {
-            using (_imapClient)
-            {
-                Connect();
-
-
-                _imapClient.Authenticate(MailBoxProperties.UserName, MailBoxProperties.Password);
-
-
-                var draftFolder = _imapClient.GetFolder(SpecialFolder.Drafts);
-                if (draftFolder == null)
-                {
-                    var toplevel = _imapClient.GetFolder(_imapClient.PersonalNamespaces[0]);
-                    draftFolder = toplevel.Create(SpecialFolder.Drafts.ToString(), true);
-                }
-                draftFolder.Open(FolderAccess.ReadWrite);
-                draftFolder.Append(message, MessageFlags.Draft);
-                draftFolder.Expunge();
-            }
-
         }
     }
 }

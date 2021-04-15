@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using EmailClient.Domain.Models;
 using EmailClient.Log;
+using EmailClient.MailServer;
 using EmailClient.Models;
 using EmailClient.Views;
 
@@ -13,12 +14,11 @@ namespace EmailClient
     /// </summary>
     public partial class HomePage : Page
     {
-        private readonly IMailService _emailService;
+        public static EmailAccount emailAccount;
         public HomePage()
         {
             InitializeComponent();
-            _emailService = LoginPage.EmailService;
-            AccountView.Items.Add(_emailService.MailBoxProperties.UserName);
+            AccountView.Items.Add(emailAccount.MailBoxProperties.UserName);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -28,13 +28,7 @@ namespace EmailClient
 
         private void DownloadMessages()
         {
-            ICollection<EmailMessageModel> messageModels = new List<EmailMessageModel>();
-            foreach (var message in _emailService.GetMessages())
-            {
-                messageModels.Add(new EmailMessageBuilder().CreateFromMimeMessage(message).Build());
-            }
-
-            messageList.ItemsSource = messageModels;
+            messageList.ItemsSource = emailAccount.Emails;
         }
 
         private void New_Message_Button_Click(object sender, RoutedEventArgs e)

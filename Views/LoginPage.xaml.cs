@@ -1,8 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using EmailClient.Domain.Models;
 using EmailClient.Log;
 using EmailClient.MailServer;
+using EmailClient.Models;
 
 namespace EmailClient
 {
@@ -11,67 +15,87 @@ namespace EmailClient
     /// </summary>
     public partial class LoginPage : Page
     {
-        internal static IMailService EmailService;
+        private  MailService _emailService;
         public LoginPage()
         {
             InitializeComponent();
-           
         }
-        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        private void ContinueBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            if (username.Text.Contains("gmail.com"))
+            ProtocolTextBox.Visibility = Visibility.Visible;
+            ContinueBtn.Visibility = Visibility.Hidden;
+            DoneBtn.Visibility = Visibility.Visible;
+            if (email.Text.Contains("gmail.com")) 
             {
-                EmailService = new MailWithImap()
-                {
-                    MailBoxProperties = SetEmailService("imap", "gmail.com", 993)
-                };
+                    RadioButton imapRadioButtonb = new RadioButton { IsChecked = false, Content = "Imap" };
+                    RadioButton popRadioButtonb = new RadioButton { IsChecked = false, Content = "Pop3" };
+                    imapRadioButtonb.Checked += ImapRadioButtonb_Checked;
+                    popRadioButtonb.Checked += PopRadioButtonb_Checked;
+                    TextBoxes.Children.Add(imapRadioButtonb);
+                    TextBoxes.Children.Add(popRadioButtonb);
+           
+
             }
-            else if( username.Text.Contains("ukr.net"))
+            else if (email.Text.Contains("ukr.net"))
             {
-                EmailService = new MailWithImap()
-                {
-                    MailBoxProperties = SetEmailService("imap", "ukr.net", 993)
-                };
+                    _emailService = new LoggerMailService(new MailWithImap());
+                TextBoxes.Children.Add(new Label()
+                    {
+                        Content = "imap.ukr.net"
+                    });
             }
-            else if (username.Text.Contains("i.ua"))
+            else if (email.Text.Contains("i.ua"))
             {
-                EmailService = new MailWithPop3()
-                {
-                    MailBoxProperties = SetEmailService("pop3", "i.ua", 110)
-                };
+                    _emailService = new LoggerMailService(new MailWithPop3());
+                TextBoxes.Children.Add(new Label()
+                    {
+                        Content = "pop.i.ua"
+                    });
+
             }
             else
             {
-                error.Text = "Provider is not exist";
+                    error.Text = "Provider is not exist";
+                    ProtocolTextBox.Visibility = Visibility.Hidden;
+                ContinueBtn.Visibility = Visibility.Visible;
+                    DoneBtn.Visibility = Visibility.Hidden;
             }
 
-            EmailService = new LoggerMailService(EmailService);
-            
-            var LoggedIn = EmailService.Login();
-            if (LoggedIn)
+          
+
+
+        }
+        private void ImapRadioButtonb_Checked(object sender, RoutedEventArgs e)
+        {
+            _emailService = new LoggerMailService(new MailWithImap());
+        }
+        private void PopRadioButtonb_Checked(object sender, RoutedEventArgs e)
+        {
+            _emailService = new LoggerMailService(new MailWithPop3());
+        }
+        private void Email_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ContinueBtn.IsEnabled = IsValidEmailAddress(email.Text);
+            DoneBtn.IsEnabled = IsValidEmailAddress(email.Text);
+        }
+        private  bool IsValidEmailAddress(string s)
+        {
+            Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+            return regex.IsMatch(s);
+        }
+
+        private void DoneBtn_OnClickBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
             {
+                HomePage.emailAccount = _emailService.AddMail(email.Text, password.Password, email.Text.Split('@').Last());
                 MainWindow.MainFrame.Content = new HomePage();
             }
-            else
+            catch (Exception exception)
             {
+                Logger.GetLogger().Error("Error while adding the email", exception);
                 error.Text = "There was a problem logging you in to Mail.";
             }
-        }
-
-        private MailBoxProperties SetEmailService( string incomingServer, string provider, int incomingPort)
-        {
-            return new MailBoxProperties()
-            {
-                IncomingServer = $"{incomingServer}.{provider}",
-                IncomingServerPort = incomingPort,
-                Smtp = $"smtp.{provider}",
-                SmtpPort = 465,
-                UserName = username.Text,
-                Password = password.Password
-            };
-
-      
-
         }
     }
 }

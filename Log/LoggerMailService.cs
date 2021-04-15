@@ -1,84 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Mail;
-using System.Text;
 using EmailClient.Domain.Models;
 using MimeKit;
 
 namespace EmailClient.Log
 {
-   public class LoggerMailService : IMailService
+   public class LoggerMailService : MailServer.MailService
    {
-       private readonly IMailService _mailService;
+       private readonly MailServer.MailService _mailService;
        private readonly ILogger _logger = Logger.GetLogger();
 
-       public LoggerMailService(IMailService mailService )
+       public LoggerMailService(MailServer.MailService mailService )
         {
             _mailService = mailService;
         }
 
-       public MailBoxProperties MailBoxProperties
-       {
-           get => _mailService.MailBoxProperties;
-           set => _mailService.MailBoxProperties = value;
-       }
-
-       public  IEnumerable<MimeMessage> GetMessages()
-        {
-           _logger.Information($"Start getting messages from {MailBoxProperties.UserName}");
-           IEnumerable<MimeMessage> messages = null;
-           try
-           {
-              messages = _mailService.GetMessages();
-              _logger.Information($"All messages have been loaded from {MailBoxProperties.UserName}");
-           }
-           catch (Exception e)
-           {
-             _logger.Error($"Error while getting message from {MailBoxProperties.UserName}", e);
-           }
-
-           return messages;
-        }
-
-        public  bool Login()
+        public override bool Login(MailBoxProperties mailBoxProperties)
         {
             var login = false;
             try
             {
-                _logger.Information($"Login to {MailBoxProperties.UserName}");
-              login= _mailService.Login();
+                _logger.Information($"Login to {mailBoxProperties.UserName}");
+                login = _mailService.Login(mailBoxProperties);
             }
             catch (Exception e)
             {
-                _logger.Error($"Error while logging to {MailBoxProperties.UserName}", e);
+                _logger.Error($"Error while logging to {mailBoxProperties.UserName}", e);
             }
 
             return login;
         }
 
-        public  void Connect()
+        public override void Connect(MailBoxProperties mailBoxProperties)
         {
+
             try
             {
-              _mailService.Connect();
+                _mailService.Connect(mailBoxProperties);
             }
             catch (Exception e)
             {
-                _logger.Error($"Error while connecting to {MailBoxProperties.UserName}", e);
+                _logger.Error($"Error while connecting to {mailBoxProperties.UserName}", e);
             }
         }
 
-        public  void SendMessages(MimeMessage message)
+        public override MailBoxProperties SetMailBoxProperties(string username, string password, string provider)
         {
+            _logger.Information($"Configuration the {username}");
+           return _mailService.SetMailBoxProperties(username, password, provider);
+        }
+
+        public override IEnumerable<MimeMessage> FetchAllMessages()
+        {
+            _logger.Information($"Start getting messages");
+            IEnumerable<MimeMessage> messages = null;
             try
             {
-                _mailService.SendMessages(message);
-                _logger.Information("The message has been sent");
+                messages = _mailService.FetchAllMessages();
+                _logger.Information($"All messages have been loaded");
             }
             catch (Exception e)
             {
-                _logger.Error($"Error while sending message to {MailBoxProperties.UserName}", e);
+                _logger.Error($"Error while getting message ", e);
             }
+
+            return messages;
         }
-    }
+   }
 }

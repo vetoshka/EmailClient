@@ -22,3 +22,54 @@
 02.04.2021 01:15:26 , Information : Login to trpztest197@gmail.com
 02.04.2021 01:15:35 , Information : Start getting messages from trpztest197@gmail.com
 02.04.2021 01:15:40 , Information : All messages have been loaded from trpztest197@gmail.com
+14.04.2021 17:12:55 , Information : Start
+14.04.2021 23:46:05 , Information : Start
+14.04.2021 23:49:45 , Information : Start
+14.04.2021 23:51:38 , Error : Error while adding the email /n Попытка установить соединение была безуспешной, т.к. от другого компьютера за требуемое время не получен нужный отклик, или было разорвано уже установленное соединение из-за неверного отклика уже подключенного компьютера. 108.177.14.109:110
+14.04.2021 23:58:06 , Information : Start
+14.04.2021 23:58:35 , Information : Configuration the trpztest197@gmail.com
+14.04.2021 23:59:17 , Error : Error while connecting to trpztest197@gmail.com /n Попытка установить соединение была безуспешной, т.к. от другого компьютера за требуемое время не получен нужный отклик, или было разорвано уже установленное соединение из-за неверного отклика уже подключенного компьютера. 74.125.128.109:110
+14.04.2021 23:59:17 , Information : Login to trpztest197@gmail.com
+14.04.2021 23:59:17 , Error : Error while logging to trpztest197@gmail.com /n The Pop3Client must be connected before you can authenticate.
+14.04.2021 23:59:17 , Information : Start getting messages
+14.04.2021 23:59:17 , Error : Error while getting message  /n The Pop3Client is not connected.
+15.04.2021 00:01:53 , Information : Start
+15.04.2021 00:02:23 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 00:02:25 , Information : Login to trpztest197@gmail.com
+15.04.2021 00:02:26 , Information : Start getting messages
+15.04.2021 00:02:27 , Error : Error while getting message  /n Cannot access a disposed object.
+Object name: 'Pop3Client'.
+15.04.2021 00:04:09 , Information : Start
+15.04.2021 00:04:19 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 00:04:20 , Information : Login to trpztest197@gmail.com
+15.04.2021 00:04:21 , Information : Start getting messages
+15.04.2021 00:04:22 , Information : All messages have been loaded
+15.04.2021 00:08:24 , Information : Start
+15.04.2021 00:08:33 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 00:08:34 , Information : Login to trpztest197@gmail.com
+15.04.2021 00:08:35 , Information : Start getting messages
+15.04.2021 00:08:38 , Information : All messages have been loaded
+15.04.2021 00:10:22 , Information : Start
+15.04.2021 00:10:59 , Information : Configuration the anyakolomiecx@ukr.net
+15.04.2021 00:11:02 , Information : Login to anyakolomiecx@ukr.net
+15.04.2021 00:11:02 , Information : Start getting messages
+15.04.2021 00:13:00 , Information : All messages have been loaded
+15.04.2021 00:22:31 , Information : Start
+15.04.2021 00:24:05 , Information : Start
+15.04.2021 00:24:17 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 00:24:17 , Error : Error while connecting to trpztest197@gmail.com /n Этот хост неизвестен.
+15.04.2021 00:24:17 , Information : Login to trpztest197@gmail.com
+15.04.2021 00:24:17 , Error : Error while logging to trpztest197@gmail.com /n The ImapClient is not connected.
+15.04.2021 00:24:17 , Information : Start getting messages
+15.04.2021 00:24:17 , Error : Error while getting message  /n The ImapClient is not connected.
+15.04.2021 00:27:30 , Information : Start
+15.04.2021 00:28:10 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 00:28:11 , Information : Login to trpztest197@gmail.com
+15.04.2021 00:28:12 , Error : Error while logging to trpztest197@gmail.com /n Invalid credentials (Failure)
+15.04.2021 00:28:12 , Information : Start getting messages
+15.04.2021 00:28:12 , Error : Error while getting message  /n The ImapClient is not authenticated.
+15.04.2021 00:28:35 , Information : Start
+15.04.2021 00:28:47 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 00:28:47 , Information : Login to trpztest197@gmail.com
+15.04.2021 00:28:49 , Information : Start getting messages
+15.04.2021 00:28:51 , Information : All messages have been loaded

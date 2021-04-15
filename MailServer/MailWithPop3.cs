@@ -10,74 +10,51 @@ using MimeKit;
 
 namespace EmailClient.MailServer
 {
-   public class MailWithPop3 : IMailService
+   public class MailWithPop3 : MailService
    {
-       private readonly IPop3Client _pop3Client;
-       private readonly SmtpClient _smtpClient;
+       private  Pop3Client _pop3Client;
 
-       public MailWithPop3()
-       {
-           _pop3Client = new Pop3Client();
-           _smtpClient = new SmtpClient();
-       }
-        public  void Connect()
+        public override bool Login(MailBoxProperties mailBoxProperties)
         {
-            if (MailBoxProperties == null)
-            {
-                throw new ArgumentNullException(nameof(MailBoxProperties));
-            }
-            _pop3Client.Connect(MailBoxProperties.IncomingServer, MailBoxProperties.IncomingServerPort, true);
             _pop3Client.AuthenticationMechanisms.Remove("XOAUTH2");
+            _pop3Client.Authenticate(mailBoxProperties.UserName, mailBoxProperties.Password);
+            return _pop3Client.IsAuthenticated;
         }
 
-        public MailBoxProperties MailBoxProperties { get; set; }
+        public override void Connect(MailBoxProperties mailBoxProperties)
+        {
+            _pop3Client = new Pop3Client();
+            _pop3Client.Connect(mailBoxProperties.IncomingServer, mailBoxProperties.IncomingServerPort, true);;
+        }
 
-        public  IEnumerable<MimeMessage> GetMessages()
+        public override MailBoxProperties SetMailBoxProperties(string username, string password, string provider)
+        {
+            return new MailBoxProperties()
+            {
+                IncomingServer = $"pop.{provider}",
+                IncomingServerPort = 995,
+                Smtp = $"smtp.{provider}",
+                SmtpPort = 465,
+                UserName = username,
+                Password = password
+            };
+        }
+
+        public override IEnumerable<MimeMessage> FetchAllMessages()
         {
             List<MimeMessage> mimeMessages = new List<MimeMessage>();
             using (_pop3Client)
             {
-                Connect();
-                _pop3Client.Authenticate(MailBoxProperties.UserName, MailBoxProperties.Password);
                 for (int i = 0; i < _pop3Client.Count; i++)
                 {
                     var message = _pop3Client.GetMessage(i);
                     mimeMessages.Add(message);
                 }
-
-                return mimeMessages;
+                _pop3Client.Disconnect(true);
             }
+          
+
+            return mimeMessages;
         }
-
-        public  bool Login()
-        {
-
-            bool login = false;
-            using (_smtpClient)
-            {
-                _smtpClient.Connect(MailBoxProperties.Smtp, MailBoxProperties.SmtpPort, true);
-                _smtpClient.AuthenticationMechanisms.Remove("XOAUTH2");
-                _smtpClient.Authenticate(MailBoxProperties.UserName, MailBoxProperties.Password);
-                login = _smtpClient.IsAuthenticated;
-            }
-            return login;
-        }
-
-        public  void SendMessages(MimeMessage message)
-        {
-            using (_smtpClient)
-            {
-                Connect();
-                _smtpClient.Authenticate(MailBoxProperties.UserName, MailBoxProperties.Password);
-                if (!_smtpClient.IsAuthenticated)
-                {
-
-                    throw new Exception("Client is not Authenticated");
-                }
-
-                _smtpClient.Send(message);
-
-            }
-        }
-    }
+   }
 }

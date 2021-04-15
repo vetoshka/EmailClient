@@ -13,7 +13,9 @@ using System.Windows.Shapes;
 using EmailClient.Domain.Models;
 using EmailClient.Exceptions;
 using EmailClient.Log;
+using EmailClient.MailServer;
 using EmailClient.Models;
+using MailKit;
 using MimeKit;
 
 namespace EmailClient.Views
@@ -23,15 +25,17 @@ namespace EmailClient.Views
     /// </summary>
     public partial class SendPage : Page
     {
-        private readonly IMailService _emailService;
+        private readonly CreateMessage _emailService;
         private readonly EmailMessageBuilder _builder;
+        private readonly EmailAccount emailAccount;
+
         public SendPage()
         {
             InitializeComponent();
             _builder = new EmailMessageBuilder();
-            _emailService = LoginPage.EmailService;
-         
-            _builder.From(_emailService.MailBoxProperties.UserName);
+            _emailService = new CreateMessage(new SendService());
+            emailAccount = HomePage.emailAccount;
+            _builder.From(emailAccount.MailBoxProperties.UserName);
         }
 
         private void ToChangedEventHandler(object sender, RoutedEventArgs args)
@@ -60,43 +64,24 @@ namespace EmailClient.Views
         private void Send_Button_Click(object sender, RoutedEventArgs e)
         {
             
-            if(!_builder.CanSend()) error.Text = "message can`t be send";
-           else
-           {
-               _emailService.SendMessages(CreateMessage(_builder.Build()));
+           // if(!_builder.CanSend()) error.Text = "message can`t be send";
+         //  else
+           //{
+               _emailService.SendMessage(_builder.Build(), emailAccount.MailBoxProperties);
                MainWindow.MainFrame.Content = new HomePage();
-            }
+            //}
          
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (_emailService.MailBoxProperties.IncomingServer.Contains("imap"))
+            if (emailAccount.MailBoxProperties.IncomingServer.Contains("imap"))
             {
-                var mail = _emailService as MailWithImap;
-                if (_builder.CanBuild()) mail.AddDraft(CreateMessage(_builder.Build()));
+                if (_builder.CanBuild()) _emailService.AddDraft(_builder.Build() , emailAccount.MailBoxProperties);
             }
             MainWindow.MainFrame.Content = new HomePage();
         }
 
-        private MimeMessage CreateMessage(EmailMessageModel messageModel)
-        {
-            var message = new MimeMessage();
-            message.From.Add(messageModel.From);
-            message.To.AddRange(messageModel.To);
-            message.Subject = messageModel.Subject;
-            var builder = new BodyBuilder
-            {
-                TextBody = messageModel.TextBody
-            };
-            foreach (var attachment in messageModel.Attachments)
-            {
-                builder.Attachments.Add(attachment);
-            }
 
-            message.Body = builder.ToMessageBody();
-            return message;
-
-        }
     }
 }

@@ -49,11 +49,7 @@ namespace EmailClient
            return false;
        }
 
-       public bool CanSend()
-       {
-           if (_emailMessage.To == null || !CanBuild()) return false;
-           return true;
-       }
+   
         public EmailMessageBuilder AddAttachments(string attachments)
        {
            _emailMessage.Attachments.Add(attachments);
