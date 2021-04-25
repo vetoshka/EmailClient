@@ -22,7 +22,6 @@ namespace EmailClient.MailServer
             {
                 _imapClient = new ImapClient();
                 _imapClient.Connect(mailBoxProperties.IncomingServer, mailBoxProperties.IncomingServerPort, true);
-                _imapClient.AuthenticationMechanisms.Remove("XOAUTH2");
             }
 
         public override MailBoxProperties SetMailBoxProperties(string username, string password, string provider)
@@ -50,6 +49,7 @@ namespace EmailClient.MailServer
                 {
                     var message = _imapClient.Inbox.GetMessage(uid);
                     mimeMessages.Add(message);
+                   var s= message.Headers[HeaderId.Importance];
                 }
                 _imapClient.Disconnect(true);
                 return mimeMessages;

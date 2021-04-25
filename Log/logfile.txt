@@ -73,3 +73,77 @@ Object name: 'Pop3Client'.
 15.04.2021 00:28:47 , Information : Login to trpztest197@gmail.com
 15.04.2021 00:28:49 , Information : Start getting messages
 15.04.2021 00:28:51 , Information : All messages have been loaded
+15.04.2021 20:49:39 , Information : Start
+15.04.2021 20:50:26 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 20:50:28 , Information : Login to trpztest197@gmail.com
+15.04.2021 20:50:30 , Error : Error while logging to trpztest197@gmail.com /n Invalid credentials (Failure)
+15.04.2021 20:50:30 , Information : Start getting messages
+15.04.2021 20:50:31 , Error : Error while getting message  /n The ImapClient is not authenticated.
+15.04.2021 20:51:55 , Information : Start
+15.04.2021 20:52:11 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 20:52:11 , Information : Login to trpztest197@gmail.com
+15.04.2021 20:52:13 , Error : Error while logging to trpztest197@gmail.com /n Invalid credentials (Failure)
+15.04.2021 20:52:13 , Information : Start getting messages
+15.04.2021 20:52:13 , Error : Error while getting message  /n The ImapClient is not authenticated.
+15.04.2021 20:54:07 , Information : Start
+15.04.2021 20:54:50 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 20:54:50 , Information : Login to trpztest197@gmail.com
+15.04.2021 20:54:52 , Information : Start getting messages
+15.04.2021 20:54:55 , Information : All messages have been loaded
+15.04.2021 20:59:44 , Information : Start
+15.04.2021 21:00:01 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:00:02 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:00:04 , Information : Start getting messages
+15.04.2021 21:00:06 , Information : All messages have been loaded
+15.04.2021 21:06:54 , Information : Start
+15.04.2021 21:07:10 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:07:10 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:07:12 , Information : Start getting messages
+15.04.2021 21:07:14 , Information : All messages have been loaded
+15.04.2021 21:10:12 , Information : Start
+15.04.2021 21:10:25 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:10:26 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:10:28 , Information : Start getting messages
+15.04.2021 21:10:30 , Information : All messages have been loaded
+15.04.2021 21:14:58 , Information : Start
+15.04.2021 21:15:11 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:15:14 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:15:16 , Information : Start getting messages
+15.04.2021 21:15:19 , Information : All messages have been loaded
+15.04.2021 21:18:27 , Information : Start
+15.04.2021 21:18:50 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:18:52 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:18:54 , Information : Start getting messages
+15.04.2021 21:18:56 , Information : All messages have been loaded
+15.04.2021 21:23:10 , Information : Start
+15.04.2021 21:23:22 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:23:22 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:23:24 , Information : Start getting messages
+15.04.2021 21:23:27 , Information : All messages have been loaded
+15.04.2021 21:29:53 , Information : Start
+15.04.2021 21:30:17 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:30:17 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:30:19 , Error : Error while logging to trpztest197@gmail.com /n Invalid credentials (Failure)
+15.04.2021 21:30:19 , Error : Error while adding the email /n Invalid credentials (Failure)
+15.04.2021 21:30:27 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:30:27 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:30:28 , Error : Error while logging to trpztest197@gmail.com /n Invalid credentials (Failure)
+15.04.2021 21:30:28 , Error : Error while adding the email /n Invalid credentials (Failure)
+15.04.2021 21:30:37 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:30:37 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:30:39 , Error : Error while logging to trpztest197@gmail.com /n Invalid credentials (Failure)
+15.04.2021 21:30:39 , Error : Error while adding the email /n Invalid credentials (Failure)
+15.04.2021 21:30:52 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:30:52 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:30:53 , Information : Start getting messages
+15.04.2021 21:30:56 , Information : All messages have been loaded
+15.04.2021 21:31:49 , Information : Start
+15.04.2021 21:32:02 , Information : Configuration the trpztest197@gmail.com
+15.04.2021 21:32:03 , Information : Login to trpztest197@gmail.com
+15.04.2021 21:32:05 , Information : Start getting messages
+15.04.2021 21:32:07 , Information : All messages have been loaded
+16.04.2021 08:52:02 , Information : Start
+16.04.2021 08:52:30 , Information : Configuration the trpztest197@gmail.com
+16.04.2021 08:52:31 , Information : Login to trpztest197@gmail.com
+16.04.2021 08:52:33 , Information : Start getting messages
+16.04.2021 08:52:36 , Information : All messages have been loaded

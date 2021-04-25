@@ -25,7 +25,10 @@ namespace EmailClient.Log
             }
             catch (Exception e)
             {
+                
                 _logger.Error($"Error while logging to {mailBoxProperties.UserName}", e);
+
+                throw;
             }
 
             return login;
@@ -41,6 +44,7 @@ namespace EmailClient.Log
             catch (Exception e)
             {
                 _logger.Error($"Error while connecting to {mailBoxProperties.UserName}", e);
+                throw;
             }
         }
 
