@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using EmailClient.Domain.Models;
+using EmailClient.Models;
 using MailKit;
 using MailKit.Net.Pop3;
 using MailKit.Net.Smtp;

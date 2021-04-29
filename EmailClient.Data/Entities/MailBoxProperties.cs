@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EmailClient.Models;
-
-namespace EmailClient.Domain.Models
+﻿namespace EmailClient.Data.Entities
 {
-  public class MailBoxProperties
+   public class MailBoxProperties : BaseEntity
     {
         public string UserName { get; set; }
         public string Name { get; set; }
@@ -13,9 +8,6 @@ namespace EmailClient.Domain.Models
         public int IncomingServerPort { get; set; }
         public string Smtp { get; set; }
         public int SmtpPort { get; set; }
-        public string Password { get; set; }
-
-
+        public string HashedPassword { get; set; }
     }
-
 }

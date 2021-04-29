@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EmailClient.Domain.Models;
+using EmailClient.Models;
 using MailKit;
 using MailKit.Net.Imap;
 using MailKit.Search;

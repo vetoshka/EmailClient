@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using EmailClient.Domain.Models;
+using EmailClient.Models;
 using MimeKit;
 
 namespace EmailClient.Log

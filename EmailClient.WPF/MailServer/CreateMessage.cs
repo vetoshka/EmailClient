@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using EmailClient.Domain.Models;
 using EmailClient.Models;
 using MailKit;
 using MailKit.Net.Imap;

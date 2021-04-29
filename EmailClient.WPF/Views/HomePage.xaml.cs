@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using EmailClient.Domain.Models;
+using EmailClient.Data;
+using EmailClient.Data.Entities;
 using EmailClient.Filters;
 using EmailClient.Log;
 using EmailClient.MailServer;
 using EmailClient.Models;
 using EmailClient.Views;
 using MimeKit;
+using EmailAccount = EmailClient.Models.EmailAccount;
+using EmailMessageModel = EmailClient.Data.Entities.EmailMessageModel;
 
 namespace EmailClient
 {
@@ -34,6 +37,23 @@ namespace EmailClient
         private void DownloadMessages()
         {
             messageList.ItemsSource = emailAccount.Emails;
+
+            UnitOfWork unit = new UnitOfWork();
+            var accont = new EmailClient.Data.Entities.EmailAccount()
+            {
+                Emails = new List<EmailMessageModel>(),
+                MailBoxProperties = new EmailClient.Data.Entities.MailBoxProperties()
+                {
+                    HashedPassword = "dssd",
+                    IncomingServer = emailAccount.MailBoxProperties.IncomingServer,
+                    IncomingServerPort = emailAccount.MailBoxProperties.IncomingServerPort,
+                    Name = "ew",
+                    Smtp = "32",
+                    SmtpPort = 21,
+                    UserName = "dssd"
+                }
+            };
+            unit.AccountRepository.Add(accont);
         }
 
         private void New_Message_Button_Click(object sender, RoutedEventArgs e)

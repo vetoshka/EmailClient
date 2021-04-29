@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Text;
-using EmailClient.Domain.Models;
 using MimeKit;
 
 namespace EmailClient.Models

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using EmailClient.Domain.Models;
 using EmailClient.Log;
 using EmailClient.MailServer;
 using EmailClient.Models;

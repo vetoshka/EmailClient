@@ -8,7 +8,7 @@ namespace EmailClient
 {
    public class Logger : ILogger
     {
-        private const string filePath = @"D:\EmailClient\Log\logfile.txt";
+        private const string filePath = @"D:\EmailClient\EmailClient.WPF\Log\logfile.txt";
         private static readonly Logger _logger = new Logger();
         private Logger()
         {

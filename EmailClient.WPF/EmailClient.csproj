@@ -12,4 +12,8 @@
     <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EmailClient.Data\EmailClient.Data.csproj" />
+  </ItemGroup>
+
 </Project>

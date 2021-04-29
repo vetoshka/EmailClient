@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EmailClient.Domain.Models;
 using EmailClient.Models;
 using MimeKit;
 
