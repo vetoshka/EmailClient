@@ -9,6 +9,6 @@ namespace EmailClient.Data.Interfaces
    public interface IUnitOfWork : IDisposable
     {
         IAccountRepository AccountRepository { get; }
-        ILiteDatabase LiteDatabase { get; }
+        IEmailMessageRepository EmailMessageRepository { get; }
     }
 }

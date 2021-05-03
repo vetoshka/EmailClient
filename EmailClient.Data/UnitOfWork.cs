@@ -8,15 +8,40 @@ using LiteDB;
 namespace EmailClient.Data
 {
    public class UnitOfWork : IUnitOfWork
-    {
-        private ILiteDatabase _liteDb;
-        private bool _disposed;
+   {
+       private readonly EmailDbContext _dbContext;
+   
         private AccountRepository _accountRepository;
+        private EmailMessageRepository _emailMessageRepository;
+        public UnitOfWork()
+        {
+            _dbContext = new EmailDbContext(new LiteDatabase(@"D:\EmailClient\Email.db"));
+        }
+ 
+
+        public IAccountRepository AccountRepository
+        {
+            get
+            {
+                return _accountRepository ??= new AccountRepository(_dbContext);
+            }
+        }
+
+        public IEmailMessageRepository EmailMessageRepository
+        {
+            get
+            {
+                return _emailMessageRepository ??= new EmailMessageRepository(_dbContext);
+            }
+        }
+
+        private bool _disposed;
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
 
         private void Dispose(bool disposing)
         {
@@ -24,26 +49,9 @@ namespace EmailClient.Data
             {
                 if (disposing)
                 {
-                    _liteDb?.Dispose();
+                    _dbContext?.Dispose();
                 }
                 _disposed = true;
-            }
-        }
-
-        public IAccountRepository AccountRepository
-        {
-            get
-            {
-                _accountRepository ??= new AccountRepository(LiteDatabase);
-                return _accountRepository;
-            }
-        }
-
-        public ILiteDatabase LiteDatabase
-        {
-            get
-            {
-                return _liteDb ??= new LiteDatabase(@"D:\EmailClient\Email.db");
             }
         }
     }

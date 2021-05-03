@@ -8,6 +8,6 @@ namespace EmailClient.Data.Entities
         public ICollection<string> To { get; set; }
         public string Subject { get; set; }
         public string TextBody { get; set; }
-        public IDictionary<string,string> Attachments { get; set; }
+        public IDictionary<string,string> AttachmentsNames { get; set; }
     }
 }

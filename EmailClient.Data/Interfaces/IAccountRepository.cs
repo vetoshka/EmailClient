@@ -9,6 +9,8 @@ namespace EmailClient.Data.Interfaces
    { 
        public void LoadAttachments(string fileName , string directory);
        public EmailAccount GetByUserName(string userName);
-       public bool DeleteByUserName(string userName);
+       public EmailAccount GetByUserNameWithEmails(string userName);
+       public EmailAccount GetByIdWithEmails(int id);
+        public bool DeleteByUserName(string userName);
     }
 }
