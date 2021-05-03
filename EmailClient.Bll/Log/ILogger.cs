@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace EmailClient
+namespace EmailClient.Bll.Log
 {
     public interface ILogger
     {

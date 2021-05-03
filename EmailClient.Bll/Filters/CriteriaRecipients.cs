@@ -5,7 +5,7 @@ using MimeKit;
 
 namespace EmailClient.Bll.Filters
 {
-    class CriteriaRecipients: ICriteria
+   public class CriteriaRecipients: ICriteria
     {
         private readonly string _searchCriteria;
         public CriteriaRecipients(string searchCriteria)

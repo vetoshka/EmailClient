@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
-using System.Text;
 using System.Text.RegularExpressions;
-using EmailClient.Exceptions;
-using EmailClient.Models;
+using EmailClient.Bll.DTO;
+using EmailClient.Bll.Exceptions;
 using MimeKit;
 
-namespace EmailClient
+namespace EmailClient.Bll
 {
    public class EmailMessageBuilder
    {
-       private readonly EmailMessageModel _emailMessage;
+       private readonly EmailMessageDto _emailMessage;
 
        public EmailMessageBuilder()
        {
-           _emailMessage = new EmailMessageModel {To = new List<InternetAddress>() , Attachments = new List<string>()};
+           _emailMessage = new EmailMessageDto() {To = new List<InternetAddress>() , Attachments = new List<string>()};
        }
 
        public EmailMessageBuilder From(string sender)
@@ -70,7 +67,7 @@ namespace EmailClient
            return this;
        }
 
-       public EmailMessageModel Build() => _emailMessage;
+       public EmailMessageDto Build() => _emailMessage;
 
        public static bool IsEmail(string inputEmail)
        {

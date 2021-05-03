@@ -4,8 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EmailClient"
-      xmlns:models="clr-namespace:EmailClient.Models"
-      xmlns:MimeKit="clr-namespace:MimeKit;assembly=MimeKit" x:Class="EmailClient.HomePage"
+      xmlns:MimeKit="clr-namespace:MimeKit;assembly=MimeKit"
+      xmlns:dto1="clr-namespace:EmailClient.Bll.DTO;assembly=EmailClient.Bll"
+      x:Class="EmailClient.Views.HomePage"
       mc:Ignorable="d"
       Title="HomePage" Background="AliceBlue" Height="457" Width="794">
     <Grid>
@@ -84,7 +85,7 @@
 
         <ListBox x:Name="AccountView" Grid.Column="0" Margin="0,0,10,0" SelectionMode="Single" SelectionChanged="AccountView_OnSelectionChanged">
             <ListBox.DataContext>
-                <models:EmailAccount/>
+                <dto1:EmailAccountDto/>
             </ListBox.DataContext>
             <TextBlock Text="{Binding MailBoxProperties.UserName}" />
         </ListBox>

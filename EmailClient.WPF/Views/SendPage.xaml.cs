@@ -10,9 +10,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using EmailClient.Exceptions;
-using EmailClient.Log;
-using EmailClient.MailServer;
+using EmailClient.Bll;
+using EmailClient.Bll.DTO;
+using EmailClient.Bll.Exceptions;
+using EmailClient.Bll.MailServer;
+using EmailClient.Data.Entities;
 using EmailClient.Models;
 using MailKit;
 using MimeKit;
@@ -26,14 +28,14 @@ namespace EmailClient.Views
     {
         private readonly CreateMessage _emailService;
         private readonly EmailMessageBuilder _builder;
-        private readonly EmailAccount emailAccount;
+        private readonly EmailAccountDto emailAccount;
 
         public SendPage()
         {
             InitializeComponent();
             _builder = new EmailMessageBuilder();
             _emailService = new CreateMessage(new SendService());
-            emailAccount = HomePage.emailAccount;
+            emailAccount = HomePage.EmailAccount;
             _builder.From(emailAccount.MailBoxProperties.UserName);
         }
 

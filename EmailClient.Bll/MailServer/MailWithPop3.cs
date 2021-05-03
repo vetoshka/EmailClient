@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using EmailClient.Data.Entities;
 using EmailClient.Models;
-using MailKit;
 using MailKit.Net.Pop3;
-using MailKit.Net.Smtp;
-using MailKit.Search;
 using MimeKit;
 
-namespace EmailClient.MailServer
+namespace EmailClient.Bll.MailServer
 {
    public class MailWithPop3 : MailService
    {
@@ -18,7 +13,7 @@ namespace EmailClient.MailServer
         public override bool Login(MailBoxPropertiesDto mailBoxProperties)
         {
             _pop3Client.AuthenticationMechanisms.Remove("XOAUTH2");
-            _pop3Client.Authenticate(mailBoxProperties.UserName, mailBoxProperties.Password);
+            _pop3Client.Authenticate(mailBoxProperties.UserName, mailBoxProperties.HashedPassword);
             return _pop3Client.IsAuthenticated;
         }
 
@@ -37,7 +32,7 @@ namespace EmailClient.MailServer
                 Smtp = $"smtp.{provider}",
                 SmtpPort = 465,
                 UserName = username,
-                Password = password
+                HashedPassword = password
             };
         }
 

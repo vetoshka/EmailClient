@@ -1,14 +1,11 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Text;
 
-namespace EmailClient
+namespace EmailClient.Bll.Log
 {
    public class Logger : ILogger
     {
-        private const string filePath = @"D:\EmailClient\EmailClient.WPF\Log\logfile.txt";
+        private const string FilePath = @"D:\Email\EmailClient\EmailClient.Bll\Log\logfile.txt";
         private static readonly Logger _logger = new Logger();
         private Logger()
         {
@@ -42,7 +39,7 @@ namespace EmailClient
         private void WriteToFile( string message)
         {
 
-            using StreamWriter sw = File.AppendText(filePath);
+            using StreamWriter sw = File.AppendText(FilePath);
             sw.WriteLine( $"{DateTime.Now} , {message}");
         }
     }

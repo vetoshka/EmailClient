@@ -167,3 +167,8 @@ Object name: 'Pop3Client'.
 26.04.2021 14:06:49 , Information : Login to trpztest197@gmail.com
 26.04.2021 14:06:51 , Information : Start getting messages
 26.04.2021 14:06:53 , Information : All messages have been loaded
+03.05.2021 21:59:49 , Information : Start
+03.05.2021 22:02:18 , Information : Configuration the trpztest197@gmail.com
+03.05.2021 22:02:21 , Information : Login to trpztest197@gmail.com
+03.05.2021 22:02:23 , Information : Start getting messages
+03.05.2021 22:02:26 , Information : All messages have been loaded

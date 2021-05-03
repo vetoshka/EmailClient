@@ -5,7 +5,7 @@ using MimeKit;
 
 namespace EmailClient.Bll.Filters
 {
-    class CriteriaAttachment : ICriteria
+  public  class CriteriaAttachment : ICriteria
     {
         public IEnumerable<MimeMessage> SearchMessages(IEnumerable<MimeMessage> messages)
         {

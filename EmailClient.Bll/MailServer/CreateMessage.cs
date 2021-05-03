@@ -1,12 +1,15 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
+using EmailClient.Bll.DTO;
 using EmailClient.Models;
 using MailKit;
 using MailKit.Net.Imap;
 using MimeKit;
 
-namespace EmailClient.MailServer
+
+namespace EmailClient.Bll.MailServer
 {
   public  class CreateMessage
   {
@@ -17,23 +20,17 @@ namespace EmailClient.MailServer
           _sendService = sendService;
       }
 
-
-
-
       public void SendMessage(EmailMessageDto messageModel, MailBoxPropertiesDto mailBoxProperties)
       {
             _sendService.SendMessages(NewMimeMessage( messageModel), mailBoxProperties);
       }
-
-
-
 
         public void AddDraft(EmailMessageDto messagemodel , MailBoxPropertiesDto mailBoxProperties)
         {
            var   message = NewMimeMessage(messagemodel);
             using var imapClient = new ImapClient();
             imapClient.Connect(mailBoxProperties.IncomingServer, mailBoxProperties.IncomingServerPort);
-            imapClient.Authenticate(mailBoxProperties.UserName, mailBoxProperties.Password);
+            imapClient.Authenticate(mailBoxProperties.UserName, mailBoxProperties.HashedPassword);
 
 
             var draftFolder = imapClient.GetFolder(SpecialFolder.Drafts);

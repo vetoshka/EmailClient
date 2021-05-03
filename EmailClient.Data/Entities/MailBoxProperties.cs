@@ -1,6 +1,6 @@
 ﻿namespace EmailClient.Data.Entities
 {
-   public class MailBoxProperties : BaseEntity
+   public class MailBoxProperties
     {
         public string UserName { get; set; }
         public string Name { get; set; }

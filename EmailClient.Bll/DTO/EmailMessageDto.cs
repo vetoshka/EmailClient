@@ -5,8 +5,7 @@ namespace EmailClient.Bll.DTO
 {
    public class EmailMessageDto 
     {
-
-        public int EmailId { get; set; }
+        public int Id { get; set; }
         public MailboxAddress From { get; set; }
         public ICollection<InternetAddress> To { get; set; }
         public string Subject { get; set; }

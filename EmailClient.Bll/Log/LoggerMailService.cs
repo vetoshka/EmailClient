@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using EmailClient.Bll.MailServer;
 using EmailClient.Models;
 using MimeKit;
 
-namespace EmailClient.Log
+namespace EmailClient.Bll.Log
 {
-   public class LoggerMailService : MailServer.MailService
+   public class LoggerMailService : MailService
    {
-       private readonly MailServer.MailService _mailService;
+       private readonly MailService _mailService;
        private readonly ILogger _logger = Logger.GetLogger();
 
-       public LoggerMailService(MailServer.MailService mailService )
+       public LoggerMailService(MailService mailService )
         {
             _mailService = mailService;
         }
@@ -56,16 +57,16 @@ namespace EmailClient.Log
 
         public override IEnumerable<MimeMessage> FetchAllMessages()
         {
-            _logger.Information($"Start getting messages");
+            _logger.Information("Start getting messages");
             IEnumerable<MimeMessage> messages = null;
             try
             {
                 messages = _mailService.FetchAllMessages();
-                _logger.Information($"All messages have been loaded");
+                _logger.Information("All messages have been loaded");
             }
             catch (Exception e)
             {
-                _logger.Error($"Error while getting message ", e);
+                _logger.Error("Error while getting message ", e);
             }
 
             return messages;

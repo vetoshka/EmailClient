@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using EmailClient.Data.Entities;
 using EmailClient.Models;
 using MailKit.Net.Smtp;
 using MimeKit;
 
-namespace EmailClient.MailServer
+namespace EmailClient.Bll.MailServer
 {
   public class SendService
     {
@@ -14,7 +12,7 @@ namespace EmailClient.MailServer
             using var smtpClient = new SmtpClient();
             smtpClient.Connect(mailBoxProperties.Smtp, mailBoxProperties.SmtpPort, true);
             smtpClient.AuthenticationMechanisms.Remove("XOAUTH2");
-            smtpClient.Authenticate(mailBoxProperties.UserName, mailBoxProperties.Password);
+            smtpClient.Authenticate(mailBoxProperties.UserName, mailBoxProperties.HashedPassword);
             smtpClient.Send(message);
             smtpClient.Disconnect(true);
         }

@@ -3,9 +3,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using EmailClient.Log;
-using EmailClient.MailServer;
-using EmailClient.Models;
+using EmailClient.Bll.Log;
+using EmailClient.Bll.MailServer;
+using EmailClient.Views;
 
 namespace EmailClient
 {
@@ -87,7 +87,7 @@ namespace EmailClient
         {
             try
             {
-                HomePage.emailAccount = _emailService.AddMail(email.Text, password.Password, email.Text.Split('@').Last());
+                HomePage.EmailAccount = _emailService.AddMail(email.Text, password.Password, email.Text.Split('@').Last());
                 MainWindow.MainFrame.Content = new HomePage();
             }
             catch (Exception exception)

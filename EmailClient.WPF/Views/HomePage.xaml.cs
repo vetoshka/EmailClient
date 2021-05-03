@@ -1,30 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using EmailClient.Data;
-using EmailClient.Data.Entities;
+using EmailClient.Bll.DTO;
+using EmailClient.Bll.Filters;
 using EmailClient.Filters;
-using EmailClient.Log;
-using EmailClient.MailServer;
-using EmailClient.Models;
-using EmailClient.Views;
-using MimeKit;
-using EmailAccount = EmailClient.Models.EmailAccount;
-using EmailMessageModel = EmailClient.Data.Entities.EmailMessageModel;
 
-namespace EmailClient
+namespace EmailClient.Views
 {
     /// <summary>
     /// Interaction logic for HomePage.xaml
     /// </summary>
     public partial class HomePage : Page
     {
-        public static EmailAccount emailAccount;
+        public static EmailAccountDto EmailAccount;
 
         public HomePage()
         {
             InitializeComponent();
-            AccountView.Items.Add(emailAccount.MailBoxProperties.UserName);
+            AccountView.Items.Add(EmailAccount.MailBoxProperties.UserName);
 
 
         }
@@ -36,24 +29,7 @@ namespace EmailClient
 
         private void DownloadMessages()
         {
-            messageList.ItemsSource = emailAccount.Emails;
-
-            UnitOfWork unit = new UnitOfWork();
-            var accont = new EmailClient.Data.Entities.EmailAccount()
-            {
-                Emails = new List<EmailMessageModel>(),
-                MailBoxProperties = new EmailClient.Data.Entities.MailBoxProperties()
-                {
-                    HashedPassword = "dssd",
-                    IncomingServer = emailAccount.MailBoxProperties.IncomingServer,
-                    IncomingServerPort = emailAccount.MailBoxProperties.IncomingServerPort,
-                    Name = "ew",
-                    Smtp = "32",
-                    SmtpPort = 21,
-                    UserName = "dssd"
-                }
-            };
-            unit.AccountRepository.Add(accont);
+            messageList.ItemsSource = EmailAccount.Emails;
         }
 
         private void New_Message_Button_Click(object sender, RoutedEventArgs e)
@@ -92,7 +68,7 @@ namespace EmailClient
                 if (AttachmentButton.IsChecked == true) criteria = new CriteriaAttachment();
             }
 
-            messageList.ItemsSource = criteria != null ? criteria.SearchMessages(emailAccount.Emails) : emailAccount.Emails;
+            messageList.ItemsSource = criteria != null ? criteria.SearchMessages(EmailAccount.Emails) : EmailAccount.Emails;
         }
     }
 }

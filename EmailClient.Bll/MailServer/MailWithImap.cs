@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using EmailClient.Models;
 using MailKit;
 using MailKit.Net.Imap;
 using MailKit.Search;
 using MimeKit;
+using MailService = EmailClient.Bll.MailServer.MailService;
 
-namespace EmailClient.MailServer
+namespace EmailClient.Bll.MailServer
 {
     public class MailWithImap : MailService
     {
@@ -14,7 +17,7 @@ namespace EmailClient.MailServer
         public override bool Login(MailBoxPropertiesDto mailBoxProperties)
         {
             _imapClient.AuthenticationMechanisms.Remove("XOAUTH2");
-            _imapClient.Authenticate(mailBoxProperties.UserName, mailBoxProperties.Password);
+            _imapClient.Authenticate(mailBoxProperties.UserName, mailBoxProperties.HashedPassword);
             return _imapClient.IsAuthenticated;
         }
 
@@ -26,6 +29,7 @@ namespace EmailClient.MailServer
 
         public override MailBoxPropertiesDto SetMailBoxProperties(string username, string password, string provider)
         {
+           
             return new MailBoxPropertiesDto()
             {
                 IncomingServer = $"imap.{provider}",
@@ -33,10 +37,17 @@ namespace EmailClient.MailServer
                 Smtp = $"smtp.{provider}",
                 SmtpPort = 465,
                 UserName = username,
-                Password = password
-            };
+                HashedPassword = password
+        };
         }
 
+        private byte[] HashPassword(string password)
+        {
+            var data = Encoding.ASCII.GetBytes(password);
+            var sha1 = new SHA1CryptoServiceProvider();
+            return  sha1.ComputeHash(data);
+       
+        }
         public override IEnumerable<MimeMessage> FetchAllMessages()
         {
             List<MimeMessage> mimeMessages = new List<MimeMessage>();

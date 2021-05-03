@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using EmailClient.Bll.DTO;
 using EmailClient.Models;
 using MimeKit;
 
-namespace EmailClient.MailServer
+namespace EmailClient.Bll.MailServer
 {
     public abstract class MailService
     {
-        public EmailAccountDTO AddMail(string username, string password, string provider)
+        public EmailAccountDto AddMail(string username, string password, string provider)
         { 
             
-            var mailBoxProperties = SetMailBoxProperties( username, password, provider);
-            Connect(mailBoxProperties);
-            Login(mailBoxProperties);
+            var mailBoxPropertiesDto = SetMailBoxProperties( username, password, provider);
+            Connect(mailBoxPropertiesDto);
+            Login(mailBoxPropertiesDto);
 
-            return new EmailAccountDTO()
+            return new EmailAccountDto()
             {
                 Emails = FetchAllMessages(),
-                MailBoxProperties = mailBoxProperties
+                MailBoxProperties = mailBoxPropertiesDto
             };
         }
         public abstract bool Login(MailBoxPropertiesDto mailBoxProperties);
