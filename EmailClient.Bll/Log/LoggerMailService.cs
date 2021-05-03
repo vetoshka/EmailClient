@@ -15,7 +15,7 @@ namespace EmailClient.Log
             _mailService = mailService;
         }
 
-        public override bool Login(MailBoxProperties mailBoxProperties)
+        public override bool Login(MailBoxPropertiesDto mailBoxProperties)
         {
             var login = false;
             try
@@ -34,7 +34,7 @@ namespace EmailClient.Log
             return login;
         }
 
-        public override void Connect(MailBoxProperties mailBoxProperties)
+        public override void Connect(MailBoxPropertiesDto mailBoxProperties)
         {
 
             try
@@ -48,7 +48,7 @@ namespace EmailClient.Log
             }
         }
 
-        public override MailBoxProperties SetMailBoxProperties(string username, string password, string provider)
+        public override MailBoxPropertiesDto SetMailBoxProperties(string username, string password, string provider)
         {
             _logger.Information($"Configuration the {username}");
            return _mailService.SetMailBoxProperties(username, password, provider);

@@ -1,6 +1,6 @@
 ﻿namespace EmailClient.Models
 {
-  public class MailBoxProperties
+  public class MailBoxPropertiesDto
     {
         public string UserName { get; set; }
         public string Name { get; set; }

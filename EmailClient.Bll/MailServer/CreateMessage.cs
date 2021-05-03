@@ -20,7 +20,7 @@ namespace EmailClient.MailServer
 
 
 
-      public void SendMessage(EmailMessageModel messageModel, MailBoxProperties mailBoxProperties)
+      public void SendMessage(EmailMessageDto messageModel, MailBoxPropertiesDto mailBoxProperties)
       {
             _sendService.SendMessages(NewMimeMessage( messageModel), mailBoxProperties);
       }
@@ -28,7 +28,7 @@ namespace EmailClient.MailServer
 
 
 
-        public void AddDraft(EmailMessageModel messagemodel , MailBoxProperties mailBoxProperties)
+        public void AddDraft(EmailMessageDto messagemodel , MailBoxPropertiesDto mailBoxProperties)
         {
            var   message = NewMimeMessage(messagemodel);
             using var imapClient = new ImapClient();
@@ -46,7 +46,7 @@ namespace EmailClient.MailServer
             draftFolder.Append(message, MessageFlags.Draft);
             draftFolder.Expunge();
         }
-        private MimeMessage NewMimeMessage(EmailMessageModel messageModel)
+        private MimeMessage NewMimeMessage(EmailMessageDto messageModel)
         {
             var message = new MimeMessage();
             message.From.Add(messageModel.From);

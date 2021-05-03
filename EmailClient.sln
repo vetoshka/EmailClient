@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailClient", "EmailClient.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailClient.Data", "EmailClient.Data\EmailClient.Data.csproj", "{FA4DC48E-1E58-4533-A00F-9083AF1CB46D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailClient.Bll", "EmailClient.Bll\EmailClient.Bll.csproj", "{B71CE1CF-6B48-4DBF-A21E-12F02D61A8DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FA4DC48E-1E58-4533-A00F-9083AF1CB46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA4DC48E-1E58-4533-A00F-9083AF1CB46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA4DC48E-1E58-4533-A00F-9083AF1CB46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B71CE1CF-6B48-4DBF-A21E-12F02D61A8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B71CE1CF-6B48-4DBF-A21E-12F02D61A8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B71CE1CF-6B48-4DBF-A21E-12F02D61A8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B71CE1CF-6B48-4DBF-A21E-12F02D61A8DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

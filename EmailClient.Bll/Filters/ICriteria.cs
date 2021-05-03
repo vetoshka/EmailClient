@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using MimeKit;
 
-namespace EmailClient.Filters
+namespace EmailClient.Bll.Filters
 {
   public interface ICriteria
   {

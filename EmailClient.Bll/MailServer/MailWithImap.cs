@@ -11,22 +11,22 @@ namespace EmailClient.MailServer
     {
         private  ImapClient _imapClient;
 
-        public override bool Login(MailBoxProperties mailBoxProperties)
+        public override bool Login(MailBoxPropertiesDto mailBoxProperties)
         {
             _imapClient.AuthenticationMechanisms.Remove("XOAUTH2");
             _imapClient.Authenticate(mailBoxProperties.UserName, mailBoxProperties.Password);
             return _imapClient.IsAuthenticated;
         }
 
-        public override void Connect( MailBoxProperties mailBoxProperties)
+        public override void Connect( MailBoxPropertiesDto mailBoxProperties)
             {
                 _imapClient = new ImapClient();
                 _imapClient.Connect(mailBoxProperties.IncomingServer, mailBoxProperties.IncomingServerPort, true);
             }
 
-        public override MailBoxProperties SetMailBoxProperties(string username, string password, string provider)
+        public override MailBoxPropertiesDto SetMailBoxProperties(string username, string password, string provider)
         {
-            return new MailBoxProperties()
+            return new MailBoxPropertiesDto()
             {
                 IncomingServer = $"imap.{provider}",
                 IncomingServerPort = 993,

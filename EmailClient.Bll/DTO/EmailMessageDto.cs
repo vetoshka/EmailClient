@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-using System.Text;
-using MailKit;
+﻿using System.Collections.Generic;
 using MimeKit;
 
-namespace EmailClient.Models
+namespace EmailClient.Bll.DTO
 {
-   public class EmailMessageModel 
+   public class EmailMessageDto 
     {
 
         public int EmailId { get; set; }

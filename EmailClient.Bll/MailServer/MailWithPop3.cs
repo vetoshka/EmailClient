@@ -15,22 +15,22 @@ namespace EmailClient.MailServer
    {
        private  Pop3Client _pop3Client;
 
-        public override bool Login(MailBoxProperties mailBoxProperties)
+        public override bool Login(MailBoxPropertiesDto mailBoxProperties)
         {
             _pop3Client.AuthenticationMechanisms.Remove("XOAUTH2");
             _pop3Client.Authenticate(mailBoxProperties.UserName, mailBoxProperties.Password);
             return _pop3Client.IsAuthenticated;
         }
 
-        public override void Connect(MailBoxProperties mailBoxProperties)
+        public override void Connect(MailBoxPropertiesDto mailBoxProperties)
         {
             _pop3Client = new Pop3Client();
             _pop3Client.Connect(mailBoxProperties.IncomingServer, mailBoxProperties.IncomingServerPort, true);;
         }
 
-        public override MailBoxProperties SetMailBoxProperties(string username, string password, string provider)
+        public override MailBoxPropertiesDto SetMailBoxProperties(string username, string password, string provider)
         {
-            return new MailBoxProperties()
+            return new MailBoxPropertiesDto()
             {
                 IncomingServer = $"pop.{provider}",
                 IncomingServerPort = 995,

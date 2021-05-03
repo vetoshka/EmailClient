@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace EmailClient.Exceptions
+namespace EmailClient.Bll.Exceptions
 {
    public class EmailException : Exception
    {

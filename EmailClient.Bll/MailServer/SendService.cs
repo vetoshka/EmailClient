@@ -9,7 +9,7 @@ namespace EmailClient.MailServer
 {
   public class SendService
     {
-        public void SendMessages(MimeMessage message , MailBoxProperties mailBoxProperties)
+        public void SendMessages(MimeMessage message , MailBoxPropertiesDto mailBoxProperties)
         {
             using var smtpClient = new SmtpClient();
             smtpClient.Connect(mailBoxProperties.Smtp, mailBoxProperties.SmtpPort, true);

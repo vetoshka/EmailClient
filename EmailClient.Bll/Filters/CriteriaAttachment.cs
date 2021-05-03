@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using EmailClient.Filters;
 using MimeKit;
 
-namespace EmailClient.Filters
+namespace EmailClient.Bll.Filters
 {
     class CriteriaAttachment : ICriteria
     {
