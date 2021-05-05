@@ -13,19 +13,19 @@ namespace EmailClient.Bll
 
        public EmailMessageBuilder()
        {
-           _emailMessage = new EmailMessageDto() {To = new List<InternetAddress>() , Attachments = new List<string>()};
+           _emailMessage = new EmailMessageDto() {To = new List<string>() , AttachmentsNames = new List<string>()};
        }
 
        public EmailMessageBuilder From(string sender)
        {
            if (!IsEmail(sender)) throw new EmailException("Incorrect email");
-            _emailMessage.From = MailboxAddress.Parse(sender);
+            _emailMessage.From = sender;
            return this;
        }
        public EmailMessageBuilder To(string recipient )
        {
            if (!IsEmail(recipient)) throw new EmailException( "Incorrect email");
-           _emailMessage.To.Add(MailboxAddress.Parse(recipient));
+           _emailMessage.To.Add(recipient);
                return this;
        }
        public EmailMessageBuilder WithBody(string textBody)
@@ -49,23 +49,23 @@ namespace EmailClient.Bll
    
         public EmailMessageBuilder AddAttachments(string attachments)
        {
-           _emailMessage.Attachments.Add(attachments);
+           _emailMessage.AttachmentsNames.Add(attachments);
            return this;
        }
-       public EmailMessageBuilder CreateFromMimeMessage(MimeMessage mailMessage)
-       {
-           _emailMessage.From = (MailboxAddress)mailMessage.From.First();
-           _emailMessage.To = mailMessage.To;
-           _emailMessage.Subject = mailMessage.Subject;
-           _emailMessage.TextBody = mailMessage.TextBody;
-           foreach (var attachment in mailMessage.Attachments)
-           {
+       //public EmailMessageBuilder CreateFromMimeMessage(MimeMessage mailMessage)
+       //{
+       //    _emailMessage.From = (MailboxAddress)mailMessage.From.First();
+       //    _emailMessage.To = mailMessage.To;
+       //    _emailMessage.Subject = mailMessage.Subject;
+       //    _emailMessage.TextBody = mailMessage.TextBody;
+       //    foreach (var attachment in mailMessage.Attachments)
+       //    {
               
-               var fileName = attachment.ContentDisposition?.FileName ?? attachment.ContentType.Name;
-               _emailMessage.Attachments.Add(fileName);
-           }
-           return this;
-       }
+       //        var fileName = attachment.ContentDisposition?.FileName ?? attachment.ContentType.Name;
+       //        _emailMessage.AttachmentsNames.Add(fileName);
+       //    }
+       //    return this;
+       //}
 
        public EmailMessageDto Build() => _emailMessage;
 

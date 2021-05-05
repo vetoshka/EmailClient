@@ -31,13 +31,6 @@ namespace EmailClient.Data
         public EmailDbContext(ILiteDatabase liteDb)
         {
             _liteDb = liteDb;
-            SetReferences();
-        }
-
-        private void SetReferences()
-        {
-            _liteDb.Mapper.Entity<EmailAccount>()
-                .DbRef(x => x.Emails, EmailsCollectionName);
         }
 
         private bool _disposed;

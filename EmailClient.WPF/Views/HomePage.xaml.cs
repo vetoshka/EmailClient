@@ -1,9 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using EmailClient.Bll;
 using EmailClient.Bll.DTO;
 using EmailClient.Bll.Filters;
+using EmailClient.Bll.MailServer;
+using EmailClient.Bll.Services;
+using EmailClient.Data;
 using EmailClient.Filters;
+using IMapper = AutoMapper.IMapper;
+using Mapper = AutoMapper.Mapper;
+using MapperConfiguration = AutoMapper.MapperConfiguration;
 
 namespace EmailClient.Views
 {
@@ -12,24 +19,17 @@ namespace EmailClient.Views
     /// </summary>
     public partial class HomePage : Page
     {
-        public static EmailAccountDto EmailAccount;
 
         public HomePage()
         {
             InitializeComponent();
-            AccountView.Items.Add(EmailAccount.MailBoxProperties.UserName);
+            var config = new MapperConfiguration(conf => conf.AddProfile(new AutomapperProfile()));
+            IMapper mapper = config.CreateMapper();
+
+            var accountService = new AccountService(mapper,new UnitOfWork());
+            accountView.ItemsSource = accountService.GetAllAccounts();
 
 
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.MainFrame.Content = new LoginPage();
-        }
-
-        private void DownloadMessages()
-        {
-            messageList.ItemsSource = EmailAccount.Emails;
         }
 
         private void New_Message_Button_Click(object sender, RoutedEventArgs e)
@@ -39,36 +39,41 @@ namespace EmailClient.Views
 
         private void AccountView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DownloadMessages();
+            messageList.ItemsSource=((EmailAccountDto) accountView.SelectedItem).Emails;
         }
 
-
+        private void AddAccount_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.MainFrame.Content = new LoginPage();
+        }
         private void Filter_OnClick(object sender, RoutedEventArgs e)
         {
-            var criteriaCollection = new List<ICriteria>();
-            var searchText = FilterText.Text;
+            //var criteriaCollection = new List<ICriteria>();
+            //var searchText = FilterText.Text;
             
-            if ( RecepientsBtn.IsChecked == true) criteriaCollection.Add( new CriteriaRecipients(searchText));
-            if( SenderBtn.IsChecked == true) criteriaCollection.Add(new CriteriaSender(searchText));
-            ICriteria criteria = null;
-            if (SubjectBtn.IsChecked == true ) criteriaCollection.Add(new CriteriaSubject(searchText));
-            if (criteriaCollection.Count > 0)
-            {
-                 criteria = criteriaCollection[0];
+            //if ( RecepientsBtn.IsChecked == true) criteriaCollection.Add( new CriteriaRecipients(searchText));
+            //if( SenderBtn.IsChecked == true) criteriaCollection.Add(new CriteriaSender(searchText));
+            //ICriteria criteria = null;
+            //if (SubjectBtn.IsChecked == true ) criteriaCollection.Add(new CriteriaSubject(searchText));
+            //if (criteriaCollection.Count > 0)
+            //{
+            //     criteria = criteriaCollection[0];
 
-                for (int i = 1; i < criteriaCollection.Count; i++)
-                {
-                    criteria = new OrCriteria(criteria, criteriaCollection[i]);
-                }
+            //    for (int i = 1; i < criteriaCollection.Count; i++)
+            //    {
+            //        criteria = new OrCriteria(criteria, criteriaCollection[i]);
+            //    }
 
-                if (AttachmentButton.IsChecked == true) criteria = new AndCriteria(new CriteriaAttachment(), criteria);
-            }
-            else
-            {
-                if (AttachmentButton.IsChecked == true) criteria = new CriteriaAttachment();
-            }
+            //    if (AttachmentButton.IsChecked == true) criteria = new AndCriteria(new CriteriaAttachment(), criteria);
+            //}
+            //else
+            //{
+            //    if (AttachmentButton.IsChecked == true) criteria = new CriteriaAttachment();
+            //}
 
-            messageList.ItemsSource = criteria != null ? criteria.SearchMessages(EmailAccount.Emails) : EmailAccount.Emails;
+            //messageList.ItemsSource = criteria != null ? criteria.SearchMessages(((EmailAccountDto)AccountView.SelectedItem).Emails) : ((EmailAccountDto)AccountView.SelectedItem).Emails;
         }
+
+       
     }
 }

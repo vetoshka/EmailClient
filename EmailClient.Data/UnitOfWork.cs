@@ -15,7 +15,7 @@ namespace EmailClient.Data
         private EmailMessageRepository _emailMessageRepository;
         public UnitOfWork()
         {
-            _dbContext = new EmailDbContext(new LiteDatabase(@"D:\EmailClient\Email.db"));
+            _dbContext = new EmailDbContext(new LiteDatabase("EmailDatabase.db"));
         }
  
 

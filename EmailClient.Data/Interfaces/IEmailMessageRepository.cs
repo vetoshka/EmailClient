@@ -7,7 +7,7 @@ namespace EmailClient.Data.Interfaces
 {
     public interface IEmailMessageRepository : IRepository<EmailMessageModel>
     {
-        public IDictionary<string, string> GetAttachmentsByMessageId(int id);
-        public String GetAttachmentNameByIdAndMessageId(int messageId, string attachmentName);  
+        public IList<string> GetAttachmentsByMessageId(string id);
+        public void InsertRange(IEnumerable<EmailMessageModel> messages);
     }
 }

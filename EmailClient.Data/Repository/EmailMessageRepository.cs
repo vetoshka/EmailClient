@@ -19,7 +19,7 @@ namespace EmailClient.Data.Repository
             _dbContext.EmailMessages.Insert(entity);
         }
 
-        public bool DeleteById(int id)
+        public bool DeleteById(string id)
         {
            return _dbContext.EmailMessages.Delete(id);
         }
@@ -29,17 +29,13 @@ namespace EmailClient.Data.Repository
            return _dbContext.EmailMessages.FindAll();
         }
 
-        public string GetAttachmentNameByIdAndMessageId(int messageId, string attachmentId)
-        {
-            return _dbContext.EmailMessages.FindById(messageId).AttachmentsNames[attachmentId];
-        }
 
-        public IDictionary<string, string> GetAttachmentsByMessageId(int id)
+        public IList<string> GetAttachmentsByMessageId(string id)
         {
             return _dbContext.EmailMessages.FindById(id).AttachmentsNames;
         }
 
-        public EmailMessageModel GetById(int id)
+        public EmailMessageModel GetById(string id)
         {
             return _dbContext.EmailMessages.FindById(id);
         }
@@ -47,6 +43,12 @@ namespace EmailClient.Data.Repository
         public bool Update(EmailMessageModel entity)
         {
             return _dbContext.EmailMessages.Update(entity);
+        }
+
+
+        public void InsertRange(IEnumerable<EmailMessageModel> messages)
+        {
+            _dbContext.EmailMessages.Insert(messages);
         }
     }
 }

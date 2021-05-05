@@ -1,6 +1,7 @@
 ﻿
 using System.Windows;
 using System.Windows.Controls;
+using EmailClient.Views;
 
 namespace EmailClient
 {
@@ -14,7 +15,7 @@ namespace EmailClient
         {
             InitializeComponent();
             MainFrame = mainFrame;
-            MainFrame.Content = new LoginPage();
+            MainFrame.Content = new HomePage();
         }
     }
 }

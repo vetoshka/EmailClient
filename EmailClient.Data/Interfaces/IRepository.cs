@@ -8,17 +8,17 @@ using LiteDB;
 
 namespace EmailClient.Data.Interfaces
 {
-    public interface IRepository<TEntity> where TEntity : BaseEntity
+    public interface IRepository<TEntity>
     {
         IEnumerable<TEntity> FindAll();
 
-        TEntity GetById(int id);
+        TEntity GetById(string id);
 
         void Add(TEntity entity);
 
         bool Update(TEntity entity);
 
-        bool DeleteById(int id);
+        bool DeleteById(string id);
 
     }
 }

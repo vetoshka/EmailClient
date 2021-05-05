@@ -46,14 +46,14 @@ namespace EmailClient.Bll.MailServer
         private MimeMessage NewMimeMessage(EmailMessageDto messageModel)
         {
             var message = new MimeMessage();
-            message.From.Add(messageModel.From);
-            message.To.AddRange(messageModel.To);
+            // message.From.Add(messageModel.From);
+           // message.To.AddRange(messageModel.To);
             message.Subject = messageModel.Subject;
             var builder = new BodyBuilder
             {
                 TextBody = messageModel.TextBody
             };
-            foreach (var attachment in messageModel.Attachments)
+            foreach (var attachment in messageModel.AttachmentsNames)
             {
                 builder.Attachments.Add(attachment);
             }

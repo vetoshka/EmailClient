@@ -17,10 +17,10 @@ namespace EmailClient.Data.Repository
        }
         public IEnumerable<EmailAccount> FindAll()
         {
-            return _dbContext.AccountCollection.Include(x=>x.Emails).FindAll();
+            return _dbContext.AccountCollection.Include(x => x.Emails).FindAll();
         }
 
-        public EmailAccount GetById(int id)
+        public EmailAccount GetById(string id)
         {
           return _dbContext.AccountCollection.FindById(id);
         }
@@ -31,15 +31,6 @@ namespace EmailClient.Data.Repository
             return _dbContext.AccountCollection.FindOne(a => a.MailBoxProperties.UserName == userName);
         }
 
-        public EmailAccount GetByUserNameWithEmails(string userName)
-        {
-            return _dbContext.AccountCollection.Include(x => x.Emails).FindOne(a => a.MailBoxProperties.UserName == userName);
-        }
-
-        public EmailAccount GetByIdWithEmails(int id)
-        {
-            return _dbContext.AccountCollection.Include(x => x.Emails).FindById(id);
-        }
 
         public bool DeleteByUserName(string userName)
         {
@@ -60,7 +51,7 @@ namespace EmailClient.Data.Repository
 
         }
 
-        public bool DeleteById(int id)
+        public bool DeleteById(string id)
         {
             return _dbContext.AccountCollection.Delete(id);
         }

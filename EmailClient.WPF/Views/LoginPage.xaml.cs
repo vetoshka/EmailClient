@@ -3,8 +3,12 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using AutoMapper;
+using EmailClient.Bll;
 using EmailClient.Bll.Log;
 using EmailClient.Bll.MailServer;
+using EmailClient.Bll.Services;
+using EmailClient.Data;
 using EmailClient.Views;
 
 namespace EmailClient
@@ -14,10 +18,14 @@ namespace EmailClient
     /// </summary>
     public partial class LoginPage : Page
     {
-        private  MailService _emailService;
+        private  MailService _mailService;
+        private AccountService _accountService;
         public LoginPage()
         {
             InitializeComponent();
+            var config = new MapperConfiguration(conf => conf.AddProfile(new AutomapperProfile()));
+            IMapper mapper = config.CreateMapper();
+            _accountService = new AccountService(mapper, new UnitOfWork());
         }
         private void ContinueBtn_OnClick(object sender, RoutedEventArgs e)
         {
@@ -37,7 +45,7 @@ namespace EmailClient
             }
             else if (email.Text.Contains("ukr.net"))
             {
-                    _emailService = new LoggerMailService(new MailWithImap());
+                    _mailService = new LoggerMailService(new MailWithImap());
                 TextBoxes.Children.Add(new Label()
                     {
                         Content = "imap.ukr.net"
@@ -45,7 +53,7 @@ namespace EmailClient
             }
             else if (email.Text.Contains("i.ua"))
             {
-                    _emailService = new LoggerMailService(new MailWithPop3());
+                    _mailService = new LoggerMailService(new MailWithPop3());
                 TextBoxes.Children.Add(new Label()
                     {
                         Content = "pop.i.ua"
@@ -66,11 +74,11 @@ namespace EmailClient
         }
         private void ImapRadioButtonb_Checked(object sender, RoutedEventArgs e)
         {
-            _emailService = new LoggerMailService(new MailWithImap());
+            _mailService = new LoggerMailService(new MailWithImap());
         }
         private void PopRadioButtonb_Checked(object sender, RoutedEventArgs e)
         {
-            _emailService = new LoggerMailService(new MailWithPop3());
+            _mailService = new LoggerMailService(new MailWithPop3());
         }
         private void Email_OnTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -87,7 +95,8 @@ namespace EmailClient
         {
             try
             {
-                HomePage.EmailAccount = _emailService.AddMail(email.Text, password.Password, email.Text.Split('@').Last());
+                 _accountService.AddNewAccount(email.Text, password.Password,
+                    email.Text.Split('@').Last(), _mailService);
                 MainWindow.MainFrame.Content = new HomePage();
             }
             catch (Exception exception)

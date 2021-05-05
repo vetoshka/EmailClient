@@ -28,15 +28,13 @@ namespace EmailClient.Views
     {
         private readonly CreateMessage _emailService;
         private readonly EmailMessageBuilder _builder;
-        private readonly EmailAccountDto emailAccount;
 
         public SendPage()
         {
             InitializeComponent();
             _builder = new EmailMessageBuilder();
             _emailService = new CreateMessage(new SendService());
-            emailAccount = HomePage.EmailAccount;
-            _builder.From(emailAccount.MailBoxProperties.UserName);
+          //  _builder.From(emailAccount.MailBoxProperties.UserName);
         }
 
         private void ToChangedEventHandler(object sender, RoutedEventArgs args)
@@ -68,7 +66,7 @@ namespace EmailClient.Views
            // if(!_builder.CanSend()) error.Text = "message can`t be send";
          //  else
            //{
-               _emailService.SendMessage(_builder.Build(), emailAccount.MailBoxProperties);
+              // _emailService.SendMessage(_builder.Build(), emailAccount.MailBoxProperties);
                MainWindow.MainFrame.Content = new HomePage();
             //}
          
@@ -76,10 +74,10 @@ namespace EmailClient.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (emailAccount.MailBoxProperties.IncomingServer.Contains("imap"))
-            {
-                if (_builder.CanBuild()) _emailService.AddDraft(_builder.Build() , emailAccount.MailBoxProperties);
-            }
+           // if (emailAccount.MailBoxProperties.IncomingServer.Contains("imap"))
+        //    {
+          //      if (_builder.CanBuild()) _emailService.AddDraft(_builder.Build() , emailAccount.MailBoxProperties);
+          //  }
             MainWindow.MainFrame.Content = new HomePage();
         }
 

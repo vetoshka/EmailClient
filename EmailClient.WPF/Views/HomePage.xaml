@@ -8,7 +8,7 @@
       xmlns:dto1="clr-namespace:EmailClient.Bll.DTO;assembly=EmailClient.Bll"
       x:Class="EmailClient.Views.HomePage"
       mc:Ignorable="d"
-      Title="HomePage" Background="AliceBlue" Height="457" Width="794">
+      Title="HomePage" Background="AliceBlue" Height="475" Width="819">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"></ColumnDefinition>
@@ -59,18 +59,18 @@
                     <MimeKit:MimeMessage/>
                 </ListView.DataContext>
             </ListView>
-            <Grid Grid.Row="2" Margin="0,0,0,-17">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="AddAccount" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Top" Height="33" Width="129" Click="Button_Click"/>
+                <Button Grid.Column="0" Content="AddAccount" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Top" Height="33" Width="129" Click="AddAccount_Click"/>
                 <Button Grid.Column="1" Content="New message" HorizontalAlignment="Left" Margin="8" VerticalAlignment="Top" Height="33" Width="225" Click="New_Message_Button_Click" >
                     <Button.Style>
                         <Style>
                             <Style.Triggers>
                                 <DataTrigger 
-                                    Binding ="{Binding SelectedIndex, ElementName=AccountView}" 
+                                    Binding ="{Binding SelectedIndex, ElementName=accountView}" 
                                     Value="-1">
                                     <Setter Property="UIElement.IsEnabled" Value="false"/>
                                 </DataTrigger>
@@ -81,13 +81,12 @@
             </Grid>
 
         </Grid>
-        <Frame x:Name="contentFrame" NavigationUIVisibility="Hidden" Margin="10,0,10,0" Grid.ColumnSpan="2" />
+        <Frame x:Name="contentFrame" NavigationUIVisibility="Hidden" Margin="10,0,0,0" Grid.ColumnSpan="2" />
 
-        <ListBox x:Name="AccountView" Grid.Column="0" Margin="0,0,10,0" SelectionMode="Single" SelectionChanged="AccountView_OnSelectionChanged">
+        <ListBox x:Name="accountView" Grid.Column="0" DisplayMemberPath="MailBoxProperties.UserName"  Margin="0,0,10,0" SelectionMode="Single" SelectionChanged="AccountView_OnSelectionChanged">
             <ListBox.DataContext>
                 <dto1:EmailAccountDto/>
             </ListBox.DataContext>
-            <TextBlock Text="{Binding MailBoxProperties.UserName}" />
         </ListBox>
     </Grid>
 </Page>

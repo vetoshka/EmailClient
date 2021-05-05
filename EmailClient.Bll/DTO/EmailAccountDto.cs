@@ -8,6 +8,6 @@ namespace EmailClient.Bll.DTO
     {
         public int Id { get; set; }
         public MailBoxPropertiesDto MailBoxProperties { get; set; }
-        public IEnumerable<MimeMessage> Emails { get; set; }
+        public IEnumerable<EmailMessageDto> Emails { get; set; }
     }
 }

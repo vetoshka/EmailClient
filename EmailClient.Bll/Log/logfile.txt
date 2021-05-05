@@ -172,3 +172,112 @@ Object name: 'Pop3Client'.
 03.05.2021 22:02:21 , Information : Login to trpztest197@gmail.com
 03.05.2021 22:02:23 , Information : Start getting messages
 03.05.2021 22:02:26 , Information : All messages have been loaded
+05.05.2021 16:30:31 , Information : Start
+05.05.2021 16:31:06 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 16:31:09 , Information : Login to trpztest197@gmail.com
+05.05.2021 16:31:10 , Information : Start getting messages
+05.05.2021 16:31:13 , Information : All messages have been loaded
+05.05.2021 20:13:49 , Information : Start
+05.05.2021 20:15:42 , Information : Start
+05.05.2021 20:16:38 , Information : Start
+05.05.2021 20:18:10 , Information : Start
+05.05.2021 20:18:58 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 20:19:00 , Information : Login to trpztest197@gmail.com
+05.05.2021 20:19:02 , Information : Start getting messages
+05.05.2021 20:19:05 , Information : All messages have been loaded
+05.05.2021 20:19:05 , Error : Error while adding the email /n Error mapping types.
+
+Mapping types:
+EmailAccountDto -> EmailAccount
+EmailClient.Bll.DTO.EmailAccountDto -> EmailClient.Data.Entities.EmailAccount
+
+Type Map configuration:
+EmailAccountDto -> EmailAccount
+EmailClient.Bll.DTO.EmailAccountDto -> EmailClient.Data.Entities.EmailAccount
+
+Destination Member:
+MailBoxProperties
+
+05.05.2021 20:20:40 , Information : Start
+05.05.2021 20:21:09 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 20:21:09 , Information : Login to trpztest197@gmail.com
+05.05.2021 20:21:11 , Information : Start getting messages
+05.05.2021 20:21:14 , Information : All messages have been loaded
+05.05.2021 20:21:14 , Error : Error while adding the email /n There is no _id field mapped in your type: System.Collections.Generic.IEnumerable`1[[EmailClient.Data.Entities.EmailMessageModel, EmailClient.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+05.05.2021 20:25:55 , Information : Start
+05.05.2021 20:26:18 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 20:26:19 , Information : Login to trpztest197@gmail.com
+05.05.2021 20:26:21 , Information : Start getting messages
+05.05.2021 20:26:24 , Information : All messages have been loaded
+05.05.2021 20:26:24 , Error : Error while adding the email /n There is no _id field mapped in your type: System.Collections.Generic.IEnumerable`1[[EmailClient.Data.Entities.EmailMessageModel, EmailClient.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+05.05.2021 20:43:40 , Information : Start
+05.05.2021 20:44:09 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 20:44:09 , Information : Login to trpztest197@gmail.com
+05.05.2021 20:44:11 , Information : Start getting messages
+05.05.2021 20:44:14 , Information : All messages have been loaded
+05.05.2021 20:44:14 , Error : Error while adding the email /n There is no _id field mapped in your type: System.Collections.Generic.IEnumerable`1[[EmailClient.Data.Entities.EmailMessageModel, EmailClient.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+05.05.2021 20:46:39 , Information : Start
+05.05.2021 20:46:58 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 20:46:58 , Information : Login to trpztest197@gmail.com
+05.05.2021 20:47:00 , Information : Start getting messages
+05.05.2021 20:47:03 , Information : All messages have been loaded
+05.05.2021 20:47:03 , Error : Error while adding the email /n There is no _id field mapped in your type: System.Collections.Generic.IEnumerable`1[[EmailClient.Data.Entities.EmailMessageModel, EmailClient.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+05.05.2021 21:07:53 , Information : Start
+05.05.2021 21:08:36 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 21:08:37 , Information : Login to trpztest197@gmail.com
+05.05.2021 21:08:39 , Information : Start getting messages
+05.05.2021 21:08:42 , Information : All messages have been loaded
+05.05.2021 21:08:43 , Error : Error while adding the email /n Error mapping types.
+
+Mapping types:
+Object -> IEnumerable`1
+System.Object -> System.Collections.Generic.IEnumerable`1[[EmailClient.Bll.DTO.EmailAccountDto, EmailClient.Bll, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+05.05.2021 21:09:59 , Information : Start
+05.05.2021 21:12:37 , Information : Start
+05.05.2021 21:14:55 , Information : Start
+05.05.2021 21:15:36 , Information : Start
+05.05.2021 21:16:46 , Information : Start
+05.05.2021 21:17:43 , Information : Start
+05.05.2021 21:18:04 , Information : Start
+05.05.2021 21:19:46 , Information : Start
+05.05.2021 21:21:26 , Information : Start
+05.05.2021 21:22:40 , Information : Start
+05.05.2021 21:23:10 , Information : Start
+05.05.2021 21:25:33 , Information : Start
+05.05.2021 21:29:18 , Information : Start
+05.05.2021 21:31:51 , Information : Start
+05.05.2021 21:32:51 , Information : Start
+05.05.2021 21:33:27 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 21:33:29 , Information : Login to trpztest197@gmail.com
+05.05.2021 21:33:31 , Information : Start getting messages
+05.05.2021 21:33:34 , Information : All messages have been loaded
+05.05.2021 21:33:34 , Error : Error while adding the email /n Unable to cast object of type 'LiteDB.ObjectId' to type 'System.String'.
+05.05.2021 21:39:18 , Information : Start
+05.05.2021 21:40:11 , Information : Start
+05.05.2021 21:40:45 , Information : Start
+05.05.2021 21:41:07 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 21:41:08 , Information : Login to trpztest197@gmail.com
+05.05.2021 21:41:10 , Information : Start getting messages
+05.05.2021 21:41:12 , Information : All messages have been loaded
+05.05.2021 21:41:13 , Error : Error while adding the email /n Error mapping types.
+
+Mapping types:
+IEnumerable`1 -> IEnumerable`1
+System.Collections.Generic.IEnumerable`1[[EmailClient.Data.Entities.EmailAccount, EmailClient.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[EmailClient.Bll.DTO.EmailAccountDto, EmailClient.Bll, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+05.05.2021 21:47:24 , Information : Start
+05.05.2021 21:47:45 , Information : Start
+05.05.2021 21:48:57 , Information : Start
+05.05.2021 21:49:36 , Information : Configuration the trpztest197@gmail.com
+05.05.2021 21:49:36 , Information : Login to trpztest197@gmail.com
+05.05.2021 21:49:37 , Information : Start getting messages
+05.05.2021 21:49:39 , Information : All messages have been loaded
+05.05.2021 21:50:00 , Information : Start
+05.05.2021 23:04:41 , Information : Start
+05.05.2021 23:09:01 , Information : Start
+05.05.2021 23:10:41 , Information : Start
+05.05.2021 23:12:37 , Information : Start
+05.05.2021 23:13:41 , Information : Start
+05.05.2021 23:14:30 , Information : Start
+05.05.2021 23:24:15 , Information : Start
+05.05.2021 23:25:20 , Information : Start
+05.05.2021 23:27:16 , Information : Start

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AutoMapper;
 using EmailClient.Bll.DTO;
 using EmailClient.Models;
 using MimeKit;
@@ -13,10 +14,12 @@ namespace EmailClient.Bll.MailServer
             var mailBoxPropertiesDto = SetMailBoxProperties( username, password, provider);
             Connect(mailBoxPropertiesDto);
             Login(mailBoxPropertiesDto);
+            var config = new MapperConfiguration(conf => conf.AddProfile(new AutomapperProfile()));
+            IMapper mapper = config.CreateMapper();
 
             return new EmailAccountDto()
             {
-                Emails = FetchAllMessages(),
+                Emails = mapper.Map<IEnumerable<EmailMessageDto>>(FetchAllMessages()),
                 MailBoxProperties = mailBoxPropertiesDto
             };
         }
