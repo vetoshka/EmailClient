@@ -281,3 +281,13 @@ System.Collections.Generic.IEnumerable`1[[EmailClient.Data.Entities.EmailAccount
 05.05.2021 23:24:15 , Information : Start
 05.05.2021 23:25:20 , Information : Start
 05.05.2021 23:27:16 , Information : Start
+06.05.2021 00:58:26 , Information : Start
+06.05.2021 08:53:18 , Information : Start
+06.05.2021 08:57:25 , Information : Configuration the trpztest197@gmail.com
+06.05.2021 08:57:28 , Information : Login to trpztest197@gmail.com
+06.05.2021 08:57:30 , Error : Error while logging to trpztest197@gmail.com /n Invalid credentials (Failure)
+06.05.2021 08:57:30 , Error : Error while adding the email /n Invalid credentials (Failure)
+06.05.2021 08:57:44 , Information : Configuration the trpztest197@gmail.com
+06.05.2021 08:57:44 , Information : Login to trpztest197@gmail.com
+06.05.2021 08:57:46 , Information : Start getting messages
+06.05.2021 08:57:50 , Information : All messages have been loaded

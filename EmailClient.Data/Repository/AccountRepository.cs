@@ -8,57 +8,43 @@ using LiteDB;
 
 namespace EmailClient.Data.Repository
 {
-   public class AccountRepository : IAccountRepository
+   public class AccountRepository : IRepository<MailBoxProperties>
    {
-       private readonly EmailDbContext _dbContext;
-       public AccountRepository(EmailDbContext dbContext)
+       private readonly ILiteCollection<MailBoxProperties> AccountCollection;
+       public AccountRepository()
        {
-           _dbContext = dbContext;
+           using var db = new LiteDatabase("EmailDatabase.db");
+           AccountCollection = db.GetCollection<MailBoxProperties>("accounts");
        }
-        public IEnumerable<EmailAccount> FindAll()
+        public IEnumerable<MailBoxProperties> FindAll()
         {
-            return _dbContext.AccountCollection.Include(x => x.Emails).FindAll();
+            return AccountCollection.FindAll();
         }
 
-        public EmailAccount GetById(string id)
+        public MailBoxProperties GetById(string userName)
         {
-          return _dbContext.AccountCollection.FindById(id);
-        }
-
-
-        public EmailAccount GetByUserName(string userName)
-        {
-            return _dbContext.AccountCollection.FindOne(a => a.MailBoxProperties.UserName == userName);
+          return AccountCollection.FindById( userName);
         }
 
 
-        public bool DeleteByUserName(string userName)
+        public void Add(MailBoxProperties entity)
         {
-            var account = GetByUserName(userName);
-           return _dbContext.AccountCollection.Delete(account.Id);
+            if (entity == null) throw new ArgumentNullException(nameof(MailBoxProperties));
+            if (GetById(entity.UserName) != null)
+                throw new ArgumentException("This account already exist");
+            AccountCollection.Insert(entity);
         }
 
-        public void Add(EmailAccount entity)
+        public bool Update(MailBoxProperties entity)
         {
-            if (entity == null) throw new ArgumentNullException(nameof(EmailAccount));
-            _dbContext.AccountCollection.Insert(entity);
-        }
-
-        public bool Update(EmailAccount entity)
-        {
-            if (entity == null) throw new ArgumentNullException(nameof(EmailAccount));
-           return _dbContext.AccountCollection.Update(entity);
+            if (entity == null) throw new ArgumentNullException(nameof(MailBoxProperties));
+           return AccountCollection.Update(entity);
 
         }
 
         public bool DeleteById(string id)
         {
-            return _dbContext.AccountCollection.Delete(id);
+            return AccountCollection.Delete(id);
         }
-
-        public void LoadAttachments(string fileName, string directory)
-        {
-            throw new NotImplementedException();
-        }
-    }
+   }
 }

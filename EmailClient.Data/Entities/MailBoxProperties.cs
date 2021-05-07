@@ -1,7 +1,10 @@
-﻿namespace EmailClient.Data.Entities
+﻿using LiteDB;
+
+namespace EmailClient.Data.Entities
 {
    public class MailBoxProperties
     {
+        [BsonId]
         public string UserName { get; set; }
         public string Name { get; set; }
         public string IncomingServer { get; set; }

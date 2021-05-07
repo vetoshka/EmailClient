@@ -9,46 +9,57 @@ namespace EmailClient.Data.Repository
 {
     class EmailMessageRepository : IEmailMessageRepository
     {
-        private readonly EmailDbContext _dbContext;
-        public EmailMessageRepository(EmailDbContext dbContext)
+        private readonly ILiteCollection<EmailMessageModel> EmailMessages;
+        public EmailMessageRepository()
         {
-            _dbContext = dbContext;
+            using var db = new LiteDatabase("EmailDatabase.db");
+            EmailMessages = db.GetCollection<EmailMessageModel>("emails");
         }
         public void Add(EmailMessageModel entity)
-        {
-            _dbContext.EmailMessages.Insert(entity);
+        { 
+            EmailMessages.Insert(entity);
         }
 
         public bool DeleteById(string id)
         {
-           return _dbContext.EmailMessages.Delete(id);
+           return EmailMessages.Delete(id);
         }
 
         public IEnumerable<EmailMessageModel> FindAll()
         {
-           return _dbContext.EmailMessages.FindAll();
+           return EmailMessages.FindAll();
         }
 
 
         public IList<string> GetAttachmentsByMessageId(string id)
         {
-            return _dbContext.EmailMessages.FindById(id).AttachmentsNames;
+            return EmailMessages.FindById(id).AttachmentsNames;
         }
 
         public EmailMessageModel GetById(string id)
         {
-            return _dbContext.EmailMessages.FindById(id);
+            return EmailMessages.FindById(id);
         }
 
         public bool Update(EmailMessageModel entity)
         {
-            return _dbContext.EmailMessages.Update(entity);
+            return EmailMessages.Update(entity);
         }
 
 
         public void InsertRange(IEnumerable<EmailMessageModel> messages)
         {
-            _dbContext.EmailMessages.Insert(messages);
+            EmailMessages.Insert(messages);
+        }
+
+        public void LoadAttachments(string fileName, string directory)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<EmailMessageModel> GetAccountMessageByUserName(string userName)
+        {
+            EmailMessages.Find(m=>m.AccountId)
         }
     }
 }
