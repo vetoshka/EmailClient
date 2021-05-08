@@ -7,7 +7,9 @@ using EmailClient.Bll.Filters;
 using EmailClient.Bll.MailServer;
 using EmailClient.Bll.Services;
 using EmailClient.Data;
+using EmailClient.Data.Repository;
 using EmailClient.Filters;
+using EmailClient.Models;
 using IMapper = AutoMapper.IMapper;
 using Mapper = AutoMapper.Mapper;
 using MapperConfiguration = AutoMapper.MapperConfiguration;
@@ -26,9 +28,8 @@ namespace EmailClient.Views
             var config = new MapperConfiguration(conf => conf.AddProfile(new AutomapperProfile()));
             IMapper mapper = config.CreateMapper();
 
-            var accountService = new AccountService(mapper,new UnitOfWork());
+            var accountService = new MailBoxService(mapper,new AccountRepository());
             accountView.ItemsSource = accountService.GetAllAccounts();
-
 
         }
 
@@ -39,7 +40,8 @@ namespace EmailClient.Views
 
         private void AccountView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            messageList.ItemsSource=((EmailAccountDto) accountView.SelectedItem).Emails;
+           using var rep = new EmailMessageRepository();
+            messageList.ItemsSource= rep.GetAccountMessageByUserName(((MailBoxPropertiesDto) accountView.SelectedItem).UserName);
         }
 
         private void AddAccount_Click(object sender, RoutedEventArgs e)

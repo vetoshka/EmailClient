@@ -291,3 +291,89 @@ System.Collections.Generic.IEnumerable`1[[EmailClient.Data.Entities.EmailAccount
 06.05.2021 08:57:44 , Information : Login to trpztest197@gmail.com
 06.05.2021 08:57:46 , Information : Start getting messages
 06.05.2021 08:57:50 , Information : All messages have been loaded
+08.05.2021 23:10:19 , Information : Start
+08.05.2021 23:12:50 , Information : Start
+08.05.2021 23:15:04 , Information : Start
+08.05.2021 23:17:50 , Information : Start
+08.05.2021 23:19:29 , Information : Start
+08.05.2021 23:20:33 , Information : Start
+08.05.2021 23:21:21 , Information : Start
+08.05.2021 23:23:29 , Information : Start
+08.05.2021 23:24:36 , Information : Start
+08.05.2021 23:25:47 , Information : Start
+08.05.2021 23:30:00 , Information : Start
+08.05.2021 23:30:57 , Information : Start
+08.05.2021 23:40:49 , Information : Start
+08.05.2021 23:41:22 , Information : Configuration the trpztest197@gmail.com
+08.05.2021 23:41:24 , Information : Login to trpztest197@gmail.com
+08.05.2021 23:41:26 , Information : Start getting messages
+08.05.2021 23:41:29 , Information : All messages have been loaded
+08.05.2021 23:41:30 , Error : Error while adding the email /n Error mapping types.
+
+Mapping types:
+Object -> IEnumerable`1
+System.Object -> System.Collections.Generic.IEnumerable`1[[EmailClient.Data.Entities.EmailMessageModel, EmailClient.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+08.05.2021 23:43:50 , Information : Start
+08.05.2021 23:44:14 , Information : Configuration the trpztest@gmail.com
+08.05.2021 23:44:14 , Information : Login to trpztest@gmail.com
+08.05.2021 23:44:16 , Error : Error while logging to trpztest@gmail.com /n Invalid credentials (Failure)
+08.05.2021 23:44:16 , Error : Error while adding the email /n Invalid credentials (Failure)
+08.05.2021 23:44:26 , Information : Configuration the trpztest197@gmail.com
+08.05.2021 23:44:27 , Information : Login to trpztest197@gmail.com
+08.05.2021 23:44:29 , Information : Start getting messages
+08.05.2021 23:44:32 , Information : All messages have been loaded
+08.05.2021 23:44:32 , Error : Error while adding the email /n Cannot access a disposed object.
+08.05.2021 23:46:12 , Information : Start
+08.05.2021 23:46:35 , Information : Configuration the trpztest@gmail.com
+08.05.2021 23:46:35 , Information : Login to trpztest@gmail.com
+08.05.2021 23:46:36 , Error : Error while logging to trpztest@gmail.com /n Invalid credentials (Failure)
+08.05.2021 23:46:36 , Error : Error while adding the email /n Invalid credentials (Failure)
+08.05.2021 23:46:43 , Information : Configuration the trpztest197@gmail.com
+08.05.2021 23:46:43 , Information : Login to trpztest197@gmail.com
+08.05.2021 23:46:59 , Information : Start getting messages
+08.05.2021 23:47:02 , Information : All messages have been loaded
+08.05.2021 23:47:51 , Information : Start
+08.05.2021 23:48:37 , Information : Start
+08.05.2021 23:49:02 , Information : Configuration the trpztest197@gmail.com
+08.05.2021 23:49:02 , Information : Login to trpztest197@gmail.com
+08.05.2021 23:51:47 , Information : Start
+08.05.2021 23:52:16 , Information : Configuration the trpztest197@gmail.com
+08.05.2021 23:52:16 , Information : Login to trpztest197@gmail.com
+08.05.2021 23:52:18 , Error : Error while adding the email /n The process cannot access the file 'D:\Email\EmailClient\EmailClient.WPF\bin\Debug\netcoreapp3.1\EmailData.db' because it is being used by another process.
+08.05.2021 23:52:43 , Information : Configuration the trpztest197@gmail.com
+08.05.2021 23:52:44 , Information : Login to trpztest197@gmail.com
+08.05.2021 23:52:45 , Information : Start getting messages
+08.05.2021 23:52:48 , Information : All messages have been loaded
+08.05.2021 23:54:18 , Information : Start
+09.05.2021 00:00:07 , Information : Start
+09.05.2021 00:01:00 , Error : Error while adding the email /n The process cannot access the file 'D:\Email\EmailClient\EmailClient.WPF\bin\Debug\netcoreapp3.1\Email.db' because it is being used by another process.
+09.05.2021 00:02:22 , Information : Start
+09.05.2021 00:03:07 , Error : Error while adding the email /n The process cannot access the file 'D:\Email\EmailClient\EmailClient.WPF\bin\Debug\netcoreapp3.1\Email.db' because it is being used by another process.
+09.05.2021 00:03:17 , Error : Error while adding the email /n The process cannot access the file 'D:\Email\EmailClient\EmailClient.WPF\bin\Debug\netcoreapp3.1\Email.db' because it is being used by another process.
+09.05.2021 00:04:28 , Information : Start
+09.05.2021 00:04:54 , Error : Error while adding the email /n The process cannot access the file 'D:\Email\EmailClient\EmailClient.WPF\bin\Debug\netcoreapp3.1\Email.db' because it is being used by another process.
+09.05.2021 00:06:00 , Information : Start
+09.05.2021 00:06:26 , Error : Error while adding the email /n The process cannot access the file 'D:\Email\EmailClient\EmailClient.WPF\bin\Debug\netcoreapp3.1\Email.db' because it is being used by another process.
+09.05.2021 00:07:15 , Information : Start
+09.05.2021 00:07:37 , Error : Error while adding the email /n The process cannot access the file 'D:\Email\EmailClient\EmailClient.WPF\bin\Debug\netcoreapp3.1\Email.db' because it is being used by another process.
+09.05.2021 00:10:29 , Information : Start
+09.05.2021 00:11:02 , Information : Configuration the trpztest197@gmail.com
+09.05.2021 00:11:03 , Information : Login to trpztest197@gmail.com
+09.05.2021 00:11:05 , Information : Start getting messages
+09.05.2021 00:11:07 , Information : All messages have been loaded
+09.05.2021 00:12:23 , Information : Start
+09.05.2021 00:13:02 , Information : Configuration the trpztest197@gmail.com
+09.05.2021 00:13:02 , Information : Login to trpztest197@gmail.com
+09.05.2021 00:13:04 , Information : Start getting messages
+09.05.2021 00:13:06 , Information : All messages have been loaded
+09.05.2021 00:14:04 , Information : Start
+09.05.2021 00:25:57 , Information : Start
+09.05.2021 00:26:14 , Information : Start
+09.05.2021 00:26:50 , Information : Configuration the trpztest197@gmail.com
+09.05.2021 00:26:51 , Information : Login to trpztest197@gmail.com
+09.05.2021 00:26:52 , Error : Error while logging to trpztest197@gmail.com /n Invalid credentials (Failure)
+09.05.2021 00:26:52 , Error : Error while adding the email /n Invalid credentials (Failure)
+09.05.2021 00:27:01 , Information : Configuration the trpztest197@gmail.com
+09.05.2021 00:27:01 , Information : Login to trpztest197@gmail.com
+09.05.2021 00:27:02 , Information : Start getting messages
+09.05.2021 00:27:04 , Information : All messages have been loaded

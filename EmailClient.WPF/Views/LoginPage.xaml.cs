@@ -9,6 +9,7 @@ using EmailClient.Bll.Log;
 using EmailClient.Bll.MailServer;
 using EmailClient.Bll.Services;
 using EmailClient.Data;
+using EmailClient.Data.Repository;
 using EmailClient.Views;
 
 namespace EmailClient
@@ -19,13 +20,13 @@ namespace EmailClient
     public partial class LoginPage : Page
     {
         private  MailService _mailService;
-        private AccountService _accountService;
+        private MailBoxService _accountService;
         public LoginPage()
         {
             InitializeComponent();
             var config = new MapperConfiguration(conf => conf.AddProfile(new AutomapperProfile()));
             IMapper mapper = config.CreateMapper();
-            _accountService = new AccountService(mapper, new UnitOfWork());
+            _accountService = new MailBoxService(mapper, new AccountRepository());
         }
         private void ContinueBtn_OnClick(object sender, RoutedEventArgs e)
         {

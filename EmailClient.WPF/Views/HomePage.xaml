@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:EmailClient"
       xmlns:MimeKit="clr-namespace:MimeKit;assembly=MimeKit"
       xmlns:dto1="clr-namespace:EmailClient.Bll.DTO;assembly=EmailClient.Bll"
+      xmlns:models="clr-namespace:EmailClient.Models;assembly=EmailClient.Bll"
       x:Class="EmailClient.Views.HomePage"
       mc:Ignorable="d"
       Title="HomePage" Background="AliceBlue" Height="475" Width="819">
@@ -83,9 +84,9 @@
         </Grid>
         <Frame x:Name="contentFrame" NavigationUIVisibility="Hidden" Margin="10,0,0,0" Grid.ColumnSpan="2" />
 
-        <ListBox x:Name="accountView" Grid.Column="0" DisplayMemberPath="MailBoxProperties.UserName"  Margin="0,0,10,0" SelectionMode="Single" SelectionChanged="AccountView_OnSelectionChanged">
+        <ListBox x:Name="accountView" Grid.Column="0" DisplayMemberPath="UserName"  Margin="0,0,10,0" SelectionMode="Single" SelectionChanged="AccountView_OnSelectionChanged">
             <ListBox.DataContext>
-                <dto1:EmailAccountDto/>
+                <models:MailBoxPropertiesDto/>
             </ListBox.DataContext>
         </ListBox>
     </Grid>

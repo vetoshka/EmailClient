@@ -60,7 +60,6 @@ namespace EmailClient.Bll.MailServer
                 {
                     var message = _imapClient.Inbox.GetMessage(uid);
                     mimeMessages.Add(message);
-                   var s= message.Headers[HeaderId.Importance];
                 }
                 _imapClient.Disconnect(true);
                 return mimeMessages;

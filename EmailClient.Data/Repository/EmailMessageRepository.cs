@@ -7,13 +7,14 @@ using System.Text;
 
 namespace EmailClient.Data.Repository
 {
-    class EmailMessageRepository : IEmailMessageRepository
+  public  class EmailMessageRepository : IEmailMessageRepository
     {
         private readonly ILiteCollection<EmailMessageModel> EmailMessages;
+        private readonly ILiteDatabase _liteDb;
         public EmailMessageRepository()
         {
-            using var db = new LiteDatabase("EmailDatabase.db");
-            EmailMessages = db.GetCollection<EmailMessageModel>("emails");
+            _liteDb = new LiteDatabase(@"Filename=Email.db; Connection=shared");
+            EmailMessages = _liteDb.GetCollection<EmailMessageModel>("emails");
         }
         public void Add(EmailMessageModel entity)
         { 
@@ -59,7 +60,25 @@ namespace EmailClient.Data.Repository
 
         public IEnumerable<EmailMessageModel> GetAccountMessageByUserName(string userName)
         {
-            EmailMessages.Find(m=>m.AccountId)
+           return EmailMessages.Find(m => m.AccountUserName == userName);
+        }
+        private bool _disposed;
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _liteDb?.Dispose();
+                }
+                _disposed = true;
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ using LiteDB;
 
 namespace EmailClient.Data.Interfaces
 {
-    public interface IRepository<TEntity>
+    public interface IRepository<TEntity>: IDisposable
     {
         IEnumerable<TEntity> FindAll();
 

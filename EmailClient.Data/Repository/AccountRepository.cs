@@ -11,13 +11,34 @@ namespace EmailClient.Data.Repository
    public class AccountRepository : IRepository<MailBoxProperties>
    {
        private readonly ILiteCollection<MailBoxProperties> AccountCollection;
-       public AccountRepository()
+       private readonly ILiteDatabase _liteDb;
+        public AccountRepository()
        {
-           using var db = new LiteDatabase("EmailDatabase.db");
-           AccountCollection = db.GetCollection<MailBoxProperties>("accounts");
+           _liteDb = new LiteDatabase(@"Filename=Email.db; Connection=shared");
+           AccountCollection = _liteDb.GetCollection<MailBoxProperties>("accounts");
+
+        }
+       private bool _disposed;
+        public void Dispose()
+       {
+           Dispose(true);
+           GC.SuppressFinalize(this);
+       }
+
+       private void Dispose(bool disposing)
+       {
+           if (!_disposed)
+           {
+               if (disposing)
+               {
+                   _liteDb?.Dispose();
+               }
+               _disposed = true;
+           }
        }
         public IEnumerable<MailBoxProperties> FindAll()
         {
+     
             return AccountCollection.FindAll();
         }
 
